@@ -117,11 +117,6 @@ A universal framework that allows creating and combining without limits.
 -  Statistical tests 
 -  90% of `ggplot2` 
 
-
-::: fragment
-*Some common struggles of scientific plotting are solved in the accompanying script file.*
-:::
-
 ---
 
 **Multiplex CRISPR editing of wood for sustainable fiber production.**
@@ -131,7 +126,7 @@ Sulis DB, [...], Barrangou R, Wang JP. 2023. *Science* 381:216–221. [10.1126/s
 
 ![Three panels from main figure 3.](images/Sulis_fig3.png)
 
-# R(studio) crash course
+# R fundamentals
 
 ```{.r}
 ggplot()            # function
@@ -165,10 +160,22 @@ sulis_bar_data <- read_tsv()
 
 # 1. Data import {auto-animate=true}
 
+```{.r}
+?read_tsv()
+```
+
+::: {.fragment}
+![](images/read_tsv_help.png)
+:::
+
+[Arguments without default need to be supplied]{.fragment}
+
+# 1. Data import {auto-animate=true}
+
 ```{r}
 #| echo: true
 library(tidyverse)
-sulis_bar_data <- read_tsv("data/Sulis2023_fig3EF.tsv")
+sulis_bar_data <- read_tsv(file = "data/Sulis2023_fig3EF.tsv")
 ```
 
 :::{.fragment}
@@ -245,7 +252,7 @@ bar_plot <- ggplot()
 
 ::: {.column width="42.5%"}
 ```{.r code-line-numbers="2"}
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data
 )
 ```
@@ -281,7 +288,7 @@ lines_bar <- ggplot(
 
 ::: {.column width="42.5%"}
 ```{.r code-line-numbers="3-6"}
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = line,
@@ -324,7 +331,7 @@ lines_bar <- ggplot(
 #| echo: true
 #| code-line-numbers: "7-11|13"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = line,
@@ -336,7 +343,7 @@ lines_bar <- ggplot(
     fun.y = "mean"
   )
 
-lines_bar
+panel_E
 ```
 :::
 
@@ -353,7 +360,7 @@ lines_bar
 
 ::: {.column width="50%"}
 ```{r}
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = line,
@@ -365,7 +372,7 @@ lines_bar <- ggplot(
     fun.y = "mean"
   )
 
-lines_bar
+panel_E
 ```
 
 [Our first ggplot.]{.absolute bottom=100 left=600}
@@ -373,13 +380,17 @@ lines_bar
 
 ::::
 
-## Reorder x-axis {auto-animate=true}
+::: {.fragment}
+[[Which differences can you spot?]{.highlight}]{.absolute bottom=0 left=0}
+::: 
+
+## Mapping — Reorder x-axis {auto-animate=true}
 
 ```{r}
 #| echo: true
 #| code-line-numbers: "4-8"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -395,17 +406,16 @@ lines_bar <- ggplot(
     fun.y = "mean"
   )
 
-lines_bar
+panel_E
 ```
 
-## Adding standard error {auto-animate=true}
-
+## Geometries — Errorbars {auto-animate=true}
 
 ```{r}
 #| echo: true
 #| code-line-numbers: "16-19"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -425,16 +435,16 @@ lines_bar <- ggplot(
     fun.data = "mean_se"
   )
 
-lines_bar
+panel_E
 ```
 
-## Adding standard error {auto-animate=true}
+## Geometries — Errorbars {auto-animate=true}
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "12-16"
+#| code-line-numbers: "12-20"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -455,7 +465,7 @@ lines_bar <- ggplot(
     fun = "mean"
   )
 
-lines_bar
+panel_E
 ```
 
 Layers are drawn in order, so [before = below]{.highlight}
@@ -466,7 +476,7 @@ Layers are drawn in order, so [before = below]{.highlight}
 #| echo: true
 #| code-line-numbers: "16"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -483,7 +493,7 @@ lines_bar <- ggplot(
   ) +
   geom_jitter(width = 0.1)
 
-lines_bar
+panel_E
 ```
 
 ## Coordinates — Cut y-axis {auto-animate=true}
@@ -493,7 +503,7 @@ lines_bar
 #| code-line-numbers: "18-21"
 #| output-location: column-fragment
 library(ggtext)
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -514,7 +524,7 @@ lines_bar <- ggplot(
     expand = FALSE
   )
 
-lines_bar
+panel_E
 ```
 
 ::: {.fragment}
@@ -527,7 +537,7 @@ lines_bar
 #| echo: true
 #| code-line-numbers: "12-14|16|19"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -540,7 +550,7 @@ lines_bar <- ggplot(
 ) +
   scale_fill_distiller(
     palette = "Greys"
-  ) +
+  ) + # colorbrewer2.org palettes
   geom_bar(
     aes(fill = lignin),
     stat = "summary",
@@ -549,7 +559,7 @@ lines_bar <- ggplot(
   ) +
   geom_jitter(width = 0.1)
 
-lines_bar
+panel_E
 ```
 
 :::{.fragment}
@@ -560,9 +570,9 @@ That didn't work because the bar height is [calculated within the function]{.hig
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "12-14|16|19"
+#| code-line-numbers: "16"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -584,11 +594,11 @@ lines_bar <- ggplot(
   ) +
   geom_jitter(width = 0.1)
 
-lines_bar
+panel_E
 ```
 
 :::{.fragment}
-`after_stat(y)` represents the out
+`after_stat(y)` tells the function to use the `y` variable *after* calculation of the stats (in this case the mean)
 :::
 
 ## Theme — Fix axis titles {auto-animate=true}
@@ -598,7 +608,7 @@ lines_bar
 #| code-line-numbers: "1|23-29"
 #| output-location: column-fragment
 library(ggtext)
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -627,8 +637,10 @@ lines_bar <- ggplot(
     axis.title.y = element_markdown()
   )
 
-lines_bar
+panel_E
 ```
+
+`ggtext` is a `ggplot2` extension that implements HTML and markdown syntax within strings
 
 ## Theme — Rotate axis labels {auto-animate=true}
 
@@ -636,7 +648,7 @@ lines_bar
 #| echo: true
 #| code-line-numbers: "28-32"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -670,7 +682,7 @@ lines_bar <- ggplot(
     )
   )
 
-lines_bar
+panel_E
 ```
 
 ## Theme — Remove legend {auto-animate=true}
@@ -679,7 +691,7 @@ lines_bar
 #| echo: true
 #| code-line-numbers: "33"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -714,7 +726,7 @@ lines_bar <- ggplot(
     legend.position = "none"
   )
 
-lines_bar
+panel_E
 ```
 
 ## Theme — The last details {auto-animate=true}
@@ -723,7 +735,7 @@ lines_bar
 #| echo: true
 #| code-line-numbers: "22-27|32-36|37"
 #| output-location: column-fragment
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -770,8 +782,12 @@ lines_bar <- ggplot(
     legend.position = "none"
   )
 
-lines_bar
+panel_E
 ```
+
+:::{.fragment}
+Applying a `theme_*()` can completely change the look — see how to make your own in the exercise file
+:::
 
 ---
 
@@ -784,7 +800,7 @@ lines_bar
 
 ::: {.column width="50%"}
 ```{r}
-lines_bar <- ggplot(
+panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
@@ -831,7 +847,7 @@ lines_bar <- ggplot(
     legend.position = "none"
   )
 
-lines_bar
+panel_E
 ```
 
 
@@ -842,68 +858,633 @@ lines_bar
 
 ::::
 
-## Geoms
+## Next panel — same code with a few adjustments {auto-animate=true}
 
--   geom_point()
--   geom_jitter()
--   geom_line()
--   [geom_errorbar()]{.reveal .highlight}
--   geom_smooth()
--   geom_boxplot()
+```{r}
+#| echo: true
+#| code-line-numbers: "1|9|14|31"
+#| output-location: column-fragment
+panel_F <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      .desc = TRUE
+    ),
+    y = CL
+  )
+) +
+  scale_fill_distiller(
+    palette = "Greys",
+    direction = 1
+  ) +
+  geom_bar(
+    aes(fill = ..y..),
+    stat = "summary",
+    fun = "mean",
+    colour = "black",
+    width = 0.8
+  ) +
+  geom_jitter(
+    width = 0.1,
+    shape = 21,
+    fill = "black",
+    colour = "white"
+  ) +
+  labs(
+    x = NULL,
+    y = "<b>C/L ratio</b>"
+  ) +
+  scale_y_continuous(
+    expand = expansion(
+      mult = c(0, 0.05)
+    )
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.y = element_markdown(),
+    axis.text.x = element_text(
+      angle = 90,
+      vjust = 0.5,
+      hjust = 1
+    ),
+    legend.position = "none"
+  )
 
-## Scales
+panel_F
+```
 
--   scale\_\*\_\*(values, name, guide)
+---
 
-## Coords
+**Multiplex CRISPR editing of wood for sustainable fiber production.**
+Sulis DB, [...], Barrangou R, Wang JP. 2023. *Science* 381:216–221. [10.1126/science.add4514](https://doi.org/10.1126/science.add4514)
 
--   coord_cartesian(xlim, ylim, expand)
--   coord_trans(x, y)
--   coord_fixed()
+<br>
 
-## Facets
+![Three panels from main figure 3.](images/Sulis_fig3.png)
 
--   facet_wrap()
--   facet_grid()
+## Load data {auto-animate=true}
 
-## Themes
+```{r}
+#| echo: true
+sulis_scatter_data <- read_tsv("data/Sulis2023_fig3G.tsv")
+```
 
--   minimal
--   hrbrmstr
 
-# 3. Assembling plots
+## The basic scatterplot {auto-animate=true}
 
--   patchwork
+```{r}
+#| echo: true
+#| code-line-numbers: ""
+#| output-location: column
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_point() +
+  theme_sulis()
+
+panel_K
+```
+
+## Colour the points {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "8-13"
+#| output-location: column
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_point(
+    aes(colour = type)
+  ) +
+  scale_colour_manual(
+    values = c("blue", "red")
+  ) +
+  theme_sulis()
+
+panel_K
+```
+
+## Colour the points — hex codes {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "12"
+#| output-location: column
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_point(
+    aes(colour = type)
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  theme_sulis()
+
+panel_K
+```
+
+## Colour *and fill* the points {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "11|13-15"
+#| output-location: column-fragment
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(
+        alpha(colour, 0.4)
+        )
+    ),
+    shape = "circle filled"
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  theme_sulis()
+
+panel_K
+```
+
+## Reposition the legend {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "20-23"
+#| output-location: column
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(
+        alpha(colour, 0.4)
+      )
+    ),
+    shape = "circle filled"
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  theme_sulis() +
+  theme(
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+## Add horizontal line {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "8-12"
+#| output-location: column
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  theme_sulis() +
+  theme(
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+## The last details {auto-animate=true}
+
+::::{.columns}
+
+::: {.column width="50%"}
+![](images/Sulis_fig3K.png)
+[Figure from the paper.]{.absolute bottom=120 left=0}
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| fig-height: 3
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  labs(
+    x = "**Lignin content** (% of wildtype)",
+    y = "<b>Stem volume</b> (% of wildtype)"
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown(),
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+[Our *third* ggplot.]{.absolute bottom=120 left=600}
+
+:::
+::::
+
+## Bonus: label interesting points
+
+```{r}
+sulis_scatter_data[c(98:110), ]
+```
+
+## Bonus: label interesting points
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1|21-23"
+#| output-location: column-fragment
+library(ggrepel)
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  geom_label_repel(
+    aes(label = label),
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  labs(
+    x = "**Lignin content** (% of wildtype)",
+    y = "<b>Stem volume</b> (% of wildtype)"
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown(),
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+[`ggrepel` creates labels that automatically avoid overlapping]{.fragment}
+
+## Bonus: label interesting points
+
+```{r}
+#| echo: true
+#| code-line-numbers: "23"
+#| output-location: column-fragment
+library(ggrepel)
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  geom_label_repel(
+    aes(label = label),
+    size = 8
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  labs(
+    x = "**Lignin content** (% of wildtype)",
+    y = "<b>Stem volume</b> (% of wildtype)"
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown(),
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+[Geom_* size is defined in mm, theme elements in pt]{.fragment}
+
+## Bonus: label interesting points
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1|24"
+#| output-location: column-fragment
+ggtext_size <- 8 / (14 / 5)
+library(ggrepel)
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  geom_label_repel(
+    aes(label = label),
+    size = ggtext_size
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  labs(
+    x = "**Lignin content** (% of wildtype)",
+    y = "<b>Stem volume</b> (% of wildtype)"
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown(),
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+14 to 5 is the ratio of pt to mm
+
+## Bonus: label interesting points
+
+```{r}
+#| echo: true
+#| code-line-numbers: "25-27"
+#| output-location: column
+ggtext_size <- 8 / (14 / 5)
+library(ggrepel)
+panel_K <- ggplot(
+  data = sulis_scatter_data,
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
+  geom_hline(
+    yintercept = 100,
+    colour = "grey",
+    linetype = "dashed"
+  ) +
+  geom_point(
+    aes(
+      colour = type,
+      fill = after_scale(alpha(colour, 0.4))
+    ),
+    shape = "circle filled"
+  ) +
+  geom_label_repel(
+    aes(label = label),
+    size = ggtext_size,
+    label.size = NA,
+    fill = rgb(1, 1, 1, 0.5),
+    min.segment.length = 0
+  ) +
+  scale_colour_manual(
+    values = c("#275d95", "#d25952")
+  ) +
+  labs(
+    x = "**Lignin content** (% of wildtype)",
+    y = "<b>Stem volume</b> (% of wildtype)"
+  ) +
+  theme_sulis() +
+  theme(
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown(),
+    legend.position = c(0.25, 0.95),
+    legend.title = element_blank()
+  )
+
+panel_K
+```
+
+# 3. Assembling a figure {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + panel_K
+```
+
+[`patchwork` automatically aligns plots into multi-panel figures]{.fragment}
+
+## Adjust relative widths {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + panel_K +
+  plot_layout(widths = c(1, 1, 1.75))
+```
+
+## Add panel labels {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + panel_K +
+  plot_layout(widths = c(1, 1, 1.75)) &
+  plot_annotation(tag_levels = "A")
+```
+
+
+
+## Format panel labels {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + panel_K +
+  plot_layout(widths = c(1, 1, 1.75)) &
+  plot_annotation(tag_levels = list(c("E", "F", "K"))) &
+  theme(plot.tag = element_text(size = 10, face = "bold"))
+```
+
+---
+
+![](images/Sulis_fig3.png)
+
+```{r}
+#| fig-height: 2.5
+#| fig-width: 10
+library(patchwork)
+panel_E + panel_F + panel_K +
+  plot_layout(widths = c(1, 1, 1.75)) &
+  plot_annotation(tag_levels = list(c("E", "F", "K"))) &
+  theme(plot.tag = element_text(
+    size = 10, face = "bold"
+  ))
+```
+
 
 # 4. Saving plots
 
--   pdf()
+## Save to pdf
+
+```{r}
+#| echo: true
+ggsave(
+  "images/fig3.pdf",
+  width = 180,
+  height = 60,
+  units = "mm"
+)
+```
+
+PDFs don't lose resolution and are easily edited in Inkscape/Photoshop
+
+## Save to png
+
+```{r}
+#| echo: true
+library(ragg)
+ggsave(
+  "images/fig3.png",
+  width = 180,
+  height = 60,
+  units = "mm",
+  device = agg_png
+)
+```
+
+`ragg` and its devices (`agg_tiff`, `agg_jpeg`, `agg_png`) improve raster graphics text rendering
+
+---
+
+![](images/Sulis_fig3.png)
+
+![](images/fig3.png)
+
+---
+
+# Exercises!
+
+Open up `2023_ggplot2_exercises.rmd` and give it a try
+
+## Some pointers
+
+* Overview of [aesthetic mappings](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
+* Change typefaces in [raster](https://www.tidyverse.org/blog/2021/02/modern-text-features/) and [vector](https://cran.r-project.org/web/packages/showtext/vignettes/introduction.html) graphics
+* Ridgeline plots with [`ggridges`](https://wilkelab.org/ggridges/articles/introduction.html)
+* Annotation shenanigans with [`ggforce`](https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/)
+* Animated plots with [`gganimate`](https://gganimate.com)
+* "Publication ready" plots with [`ggpubr`](https://rpkgs.datanovia.com/ggpubr/)
 
 # Resources to go further
 
 -   R for Data Science, Hadley Wickham (2023) -- <https://r4ds.hadley.nz>
 -   Fundamentals of Data Visualization, Claus O. Wilke (2019) -- <https://clauswilke.com/dataviz/>
--   *I just need to know how to flip axis labels, quickly!* -- <https://perplexity.ai>
-
-# Course Supplement
-
--   importing folders of textfiles with map_dfr()
--   mutate()
--   summarise()
--   geom_bar()
--   geom_violin()
--   position_dodge()
--   coord_polar(theta)
--   facets with facet labels as axis titles
-
-# More useful extensions:
-
--   ggtext
--   ggridges
--   ggrepel
--   ggtext
--   ggforce
--   gganimate
--   ggraph
--   ggpubr(/tukeygrps?)
--   showtext/systemfonts
+-   [*I just need to know how to flip axis labels, quickly!* -- <https://perplexity.ai>]{.highlight}

@@ -458,9 +458,6 @@ Leonard Blaschek
 <li>Statistical tests</li>
 <li>90% of <code>ggplot2</code></li>
 </ul>
-<div class="fragment">
-<p><em>Some common struggles of scientific plotting are solved in the accompanying script file.</em></p>
-</div>
 </section>
 <section class="slide level2">
 
@@ -468,8 +465,8 @@ Leonard Blaschek
 <p><br></p>
 
 <img data-src="images/Sulis_fig3.png" class="r-stretch quarto-figure-center"><p class="caption">Three panels from main figure 3.</p></section></section>
-<section id="rstudio-crash-course" class="title-slide slide level1 center">
-<h1>R(studio) crash course</h1>
+<section id="r-fundamentals" class="title-slide slide level1 center">
+<h1>R fundamentals</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">ggplot</span>()            <span class="co"># function</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>ggplot              <span class="co"># object</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="dv">996107</span>              <span class="co"># number</span></span>
@@ -497,21 +494,30 @@ Leonard Blaschek
 
 <section id="data-import-3" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">1. Data import</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2" class="hljs-ln-code"><a href="#cb5-2"></a>sulis_bar_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/Sulis2023_fig3EF.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a>?<span class="fu">read_tsv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>Assign the function output of <code>read_tsv("data/Sulis2023_fig3EF.tsv")</code> <br>to the object <br><code>sulis_bar_data</code>.</p>
+<p><img data-src="images/read_tsv_help.png"></p>
 </div>
+<p><span class="fragment">Arguments without default need to be supplied</span></p>
 </section>
 
 <section id="data-import-4" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">1. Data import</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-2" class="hljs-ln-code"><a href="#cb6-2"></a>sulis_bar_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/Sulis2023_fig3EF.tsv"</span>)</span>
-<span id="cb6-3" class="hljs-ln-code"><a href="#cb6-3"></a>sulis_bar_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2" class="hljs-ln-code"><a href="#cb6-2"></a>sulis_bar_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="at">file =</span> <span class="st">"data/Sulis2023_fig3EF.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>Assign the function output of <code>read_tsv("data/Sulis2023_fig3EF.tsv")</code> <br>to the object <br><code>sulis_bar_data</code>.</p>
+</div>
+</section>
+
+<section id="data-import-5" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">1. Data import</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a href="#cb7-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2" class="hljs-ln-code"><a href="#cb7-2"></a>sulis_bar_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/Sulis2023_fig3EF.tsv"</span>)</span>
+<span id="cb7-3" class="hljs-ln-code"><a href="#cb7-3"></a>sulis_bar_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 18 × 4
    line     replicate lignin    CL
@@ -553,7 +559,7 @@ Leonard Blaschek
 <p><span style="color:grey">Theme</span></p>
 </div>
 </div><div class="column" style="width:45%;">
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a href="#cb8-1"></a>bar_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href="#cb9-1"></a>bar_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="colum" width="40%">
 
 </div>
@@ -575,9 +581,9 @@ Leonard Blaschek
 <p><span style="color:grey">Theme</span></p>
 </div>
 </div><div class="column" style="width:42.5%;">
-<div class="sourceCode" id="cb9" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href="#cb9-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb9-2" class="hljs-ln-code"><a href="#cb9-2"></a>  <span class="at">data =</span> sulis_bar_data</span>
-<span id="cb9-3" class="hljs-ln-code"><a href="#cb9-3"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb10-1" class="hljs-ln-code"><a href="#cb10-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb10-2" class="hljs-ln-code"><a href="#cb10-2"></a>  <span class="at">data =</span> sulis_bar_data</span>
+<span id="cb10-3" class="hljs-ln-code"><a href="#cb10-3"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="colum" width="42.5%">
 
 </div>
@@ -599,13 +605,13 @@ Leonard Blaschek
 <p><span style="color:grey">Theme</span></p>
 </div>
 </div><div class="column" style="width:42.5%;">
-<div class="sourceCode" id="cb10" data-code-line-numbers="3-6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb10-1" class="hljs-ln-code"><a href="#cb10-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb10-2" class="hljs-ln-code"><a href="#cb10-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb10-3" class="hljs-ln-code"><a href="#cb10-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb10-4" class="hljs-ln-code"><a href="#cb10-4"></a>    <span class="at">x =</span> line,</span>
-<span id="cb10-5" class="hljs-ln-code"><a href="#cb10-5"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb10-6" class="hljs-ln-code"><a href="#cb10-6"></a>  )</span>
-<span id="cb10-7" class="hljs-ln-code"><a href="#cb10-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-code-line-numbers="3-6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href="#cb11-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb11-2" class="hljs-ln-code"><a href="#cb11-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb11-3" class="hljs-ln-code"><a href="#cb11-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb11-4" class="hljs-ln-code"><a href="#cb11-4"></a>    <span class="at">x =</span> line,</span>
+<span id="cb11-5" class="hljs-ln-code"><a href="#cb11-5"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb11-6" class="hljs-ln-code"><a href="#cb11-6"></a>  )</span>
+<span id="cb11-7" class="hljs-ln-code"><a href="#cb11-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="colum" width="42.5%">
 
 </div>
@@ -630,19 +636,19 @@ Leonard Blaschek
 </div><div class="column" style="width:85%;">
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="7-11|13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href="#cb11-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb11-2" class="hljs-ln-code"><a href="#cb11-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb11-3" class="hljs-ln-code"><a href="#cb11-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb11-4" class="hljs-ln-code"><a href="#cb11-4"></a>    <span class="at">x =</span> line,</span>
-<span id="cb11-5" class="hljs-ln-code"><a href="#cb11-5"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb11-6" class="hljs-ln-code"><a href="#cb11-6"></a>  )</span>
-<span id="cb11-7" class="hljs-ln-code"><a href="#cb11-7"></a>) <span class="sc">+</span></span>
-<span id="cb11-8" class="hljs-ln-code"><a href="#cb11-8"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb11-9" class="hljs-ln-code"><a href="#cb11-9"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb11-10" class="hljs-ln-code"><a href="#cb11-10"></a>    <span class="at">fun.y =</span> <span class="st">"mean"</span></span>
-<span id="cb11-11" class="hljs-ln-code"><a href="#cb11-11"></a>  )</span>
-<span id="cb11-12" class="hljs-ln-code"><a href="#cb11-12"></a></span>
-<span id="cb11-13" class="hljs-ln-code"><a href="#cb11-13"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="7-11|13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="#cb12-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb12-2" class="hljs-ln-code"><a href="#cb12-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb12-3" class="hljs-ln-code"><a href="#cb12-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb12-4" class="hljs-ln-code"><a href="#cb12-4"></a>    <span class="at">x =</span> line,</span>
+<span id="cb12-5" class="hljs-ln-code"><a href="#cb12-5"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb12-6" class="hljs-ln-code"><a href="#cb12-6"></a>  )</span>
+<span id="cb12-7" class="hljs-ln-code"><a href="#cb12-7"></a>) <span class="sc">+</span></span>
+<span id="cb12-8" class="hljs-ln-code"><a href="#cb12-8"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb12-9" class="hljs-ln-code"><a href="#cb12-9"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb12-10" class="hljs-ln-code"><a href="#cb12-10"></a>    <span class="at">fun.y =</span> <span class="st">"mean"</span></span>
+<span id="cb12-11" class="hljs-ln-code"><a href="#cb12-11"></a>  )</span>
+<span id="cb12-12" class="hljs-ln-code"><a href="#cb12-12"></a></span>
+<span id="cb12-13" class="hljs-ln-code"><a href="#cb12-13"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-4-1.png" width="480"></p>
@@ -666,40 +672,15 @@ Leonard Blaschek
 <p><span class="absolute" style="left: 600px; bottom: 100px; ">Our first ggplot.</span></p>
 </div>
 </div>
-</section>
-<section id="reorder-x-axis" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Reorder x-axis</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="4-8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="#cb12-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb12-2" class="hljs-ln-code"><a href="#cb12-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb12-3" class="hljs-ln-code"><a href="#cb12-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb12-4" class="hljs-ln-code"><a href="#cb12-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb12-5" class="hljs-ln-code"><a href="#cb12-5"></a>      line,</span>
-<span id="cb12-6" class="hljs-ln-code"><a href="#cb12-6"></a>      lignin,</span>
-<span id="cb12-7" class="hljs-ln-code"><a href="#cb12-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-8" class="hljs-ln-code"><a href="#cb12-8"></a>    ),</span>
-<span id="cb12-9" class="hljs-ln-code"><a href="#cb12-9"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb12-10" class="hljs-ln-code"><a href="#cb12-10"></a>  )</span>
-<span id="cb12-11" class="hljs-ln-code"><a href="#cb12-11"></a>) <span class="sc">+</span></span>
-<span id="cb12-12" class="hljs-ln-code"><a href="#cb12-12"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb12-13" class="hljs-ln-code"><a href="#cb12-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb12-14" class="hljs-ln-code"><a href="#cb12-14"></a>    <span class="at">fun.y =</span> <span class="st">"mean"</span></span>
-<span id="cb12-15" class="hljs-ln-code"><a href="#cb12-15"></a>  )</span>
-<span id="cb12-16" class="hljs-ln-code"><a href="#cb12-16"></a></span>
-<span id="cb12-17" class="hljs-ln-code"><a href="#cb12-17"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
-<div class="cell-output-display">
-<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
-</div>
-</div>
+<div class="fragment">
+<p><span class="absolute" style="left: 0px; bottom: 0px; "><span class="highlight">Which differences can you spot?</span></span></p>
 </div>
 </section>
-<section id="adding-standard-error" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Adding standard error</h2>
+<section id="mapping-reorder-x-axis" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Mapping — Reorder x-axis</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="16-19"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href="#cb13-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="4-8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href="#cb13-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb13-2" class="hljs-ln-code"><a href="#cb13-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
 <span id="cb13-3" class="hljs-ln-code"><a href="#cb13-3"></a>  <span class="fu">aes</span>(</span>
 <span id="cb13-4" class="hljs-ln-code"><a href="#cb13-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
@@ -712,26 +693,22 @@ Leonard Blaschek
 <span id="cb13-11" class="hljs-ln-code"><a href="#cb13-11"></a>) <span class="sc">+</span></span>
 <span id="cb13-12" class="hljs-ln-code"><a href="#cb13-12"></a>  <span class="fu">geom_bar</span>(</span>
 <span id="cb13-13" class="hljs-ln-code"><a href="#cb13-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb13-14" class="hljs-ln-code"><a href="#cb13-14"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
-<span id="cb13-15" class="hljs-ln-code"><a href="#cb13-15"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-16" class="hljs-ln-code"><a href="#cb13-16"></a>  <span class="fu">geom_errorbar</span>(</span>
-<span id="cb13-17" class="hljs-ln-code"><a href="#cb13-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb13-18" class="hljs-ln-code"><a href="#cb13-18"></a>    <span class="at">fun.data =</span> <span class="st">"mean_se"</span></span>
-<span id="cb13-19" class="hljs-ln-code"><a href="#cb13-19"></a>  )</span>
-<span id="cb13-20" class="hljs-ln-code"><a href="#cb13-20"></a></span>
-<span id="cb13-21" class="hljs-ln-code"><a href="#cb13-21"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-14" class="hljs-ln-code"><a href="#cb13-14"></a>    <span class="at">fun.y =</span> <span class="st">"mean"</span></span>
+<span id="cb13-15" class="hljs-ln-code"><a href="#cb13-15"></a>  )</span>
+<span id="cb13-16" class="hljs-ln-code"><a href="#cb13-16"></a></span>
+<span id="cb13-17" class="hljs-ln-code"><a href="#cb13-17"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
-<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="480"></p>
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="adding-standard-error-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Adding standard error</h2>
+<section id="geometries-errorbars" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Geometries — Errorbars</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="12-15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href="#cb14-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="16-19"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href="#cb14-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb14-2" class="hljs-ln-code"><a href="#cb14-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
 <span id="cb14-3" class="hljs-ln-code"><a href="#cb14-3"></a>  <span class="fu">aes</span>(</span>
 <span id="cb14-4" class="hljs-ln-code"><a href="#cb14-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
@@ -742,16 +719,49 @@ Leonard Blaschek
 <span id="cb14-9" class="hljs-ln-code"><a href="#cb14-9"></a>    <span class="at">y =</span> lignin</span>
 <span id="cb14-10" class="hljs-ln-code"><a href="#cb14-10"></a>  )</span>
 <span id="cb14-11" class="hljs-ln-code"><a href="#cb14-11"></a>) <span class="sc">+</span></span>
-<span id="cb14-12" class="hljs-ln-code"><a href="#cb14-12"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb14-12" class="hljs-ln-code"><a href="#cb14-12"></a>  <span class="fu">geom_bar</span>(</span>
 <span id="cb14-13" class="hljs-ln-code"><a href="#cb14-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb14-14" class="hljs-ln-code"><a href="#cb14-14"></a>    <span class="at">fun.data =</span> <span class="st">"mean_se"</span></span>
+<span id="cb14-14" class="hljs-ln-code"><a href="#cb14-14"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
 <span id="cb14-15" class="hljs-ln-code"><a href="#cb14-15"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-16" class="hljs-ln-code"><a href="#cb14-16"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb14-16" class="hljs-ln-code"><a href="#cb14-16"></a>  <span class="fu">geom_errorbar</span>(</span>
 <span id="cb14-17" class="hljs-ln-code"><a href="#cb14-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb14-18" class="hljs-ln-code"><a href="#cb14-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
+<span id="cb14-18" class="hljs-ln-code"><a href="#cb14-18"></a>    <span class="at">fun.data =</span> <span class="st">"mean_se"</span></span>
 <span id="cb14-19" class="hljs-ln-code"><a href="#cb14-19"></a>  )</span>
 <span id="cb14-20" class="hljs-ln-code"><a href="#cb14-20"></a></span>
-<span id="cb14-21" class="hljs-ln-code"><a href="#cb14-21"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-21" class="hljs-ln-code"><a href="#cb14-21"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="geometries-errorbars-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Geometries — Errorbars</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="12-20"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb15-5" class="hljs-ln-code"><a href="#cb15-5"></a>      line,</span>
+<span id="cb15-6" class="hljs-ln-code"><a href="#cb15-6"></a>      lignin,</span>
+<span id="cb15-7" class="hljs-ln-code"><a href="#cb15-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-8" class="hljs-ln-code"><a href="#cb15-8"></a>    ),</span>
+<span id="cb15-9" class="hljs-ln-code"><a href="#cb15-9"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb15-10" class="hljs-ln-code"><a href="#cb15-10"></a>  )</span>
+<span id="cb15-11" class="hljs-ln-code"><a href="#cb15-11"></a>) <span class="sc">+</span></span>
+<span id="cb15-12" class="hljs-ln-code"><a href="#cb15-12"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb15-13" class="hljs-ln-code"><a href="#cb15-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb15-14" class="hljs-ln-code"><a href="#cb15-14"></a>    <span class="at">fun.data =</span> <span class="st">"mean_se"</span>,</span>
+<span id="cb15-15" class="hljs-ln-code"><a href="#cb15-15"></a>    <span class="at">width =</span> <span class="fl">0.2</span></span>
+<span id="cb15-16" class="hljs-ln-code"><a href="#cb15-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-17" class="hljs-ln-code"><a href="#cb15-17"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb15-18" class="hljs-ln-code"><a href="#cb15-18"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb15-19" class="hljs-ln-code"><a href="#cb15-19"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
+<span id="cb15-20" class="hljs-ln-code"><a href="#cb15-20"></a>  )</span>
+<span id="cb15-21" class="hljs-ln-code"><a href="#cb15-21"></a></span>
+<span id="cb15-22" class="hljs-ln-code"><a href="#cb15-22"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="480"></p>
@@ -764,24 +774,24 @@ Leonard Blaschek
 <h2 data-id="quarto-animate-title">Or perhaps we show the data?</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb15-5" class="hljs-ln-code"><a href="#cb15-5"></a>      line,</span>
-<span id="cb15-6" class="hljs-ln-code"><a href="#cb15-6"></a>      lignin,</span>
-<span id="cb15-7" class="hljs-ln-code"><a href="#cb15-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb15-8" class="hljs-ln-code"><a href="#cb15-8"></a>    ),</span>
-<span id="cb15-9" class="hljs-ln-code"><a href="#cb15-9"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb15-10" class="hljs-ln-code"><a href="#cb15-10"></a>  )</span>
-<span id="cb15-11" class="hljs-ln-code"><a href="#cb15-11"></a>) <span class="sc">+</span></span>
-<span id="cb15-12" class="hljs-ln-code"><a href="#cb15-12"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb15-13" class="hljs-ln-code"><a href="#cb15-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb15-14" class="hljs-ln-code"><a href="#cb15-14"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
-<span id="cb15-15" class="hljs-ln-code"><a href="#cb15-15"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-16" class="hljs-ln-code"><a href="#cb15-16"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span>
-<span id="cb15-17" class="hljs-ln-code"><a href="#cb15-17"></a></span>
-<span id="cb15-18" class="hljs-ln-code"><a href="#cb15-18"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb16-4" class="hljs-ln-code"><a href="#cb16-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb16-5" class="hljs-ln-code"><a href="#cb16-5"></a>      line,</span>
+<span id="cb16-6" class="hljs-ln-code"><a href="#cb16-6"></a>      lignin,</span>
+<span id="cb16-7" class="hljs-ln-code"><a href="#cb16-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-8" class="hljs-ln-code"><a href="#cb16-8"></a>    ),</span>
+<span id="cb16-9" class="hljs-ln-code"><a href="#cb16-9"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb16-10" class="hljs-ln-code"><a href="#cb16-10"></a>  )</span>
+<span id="cb16-11" class="hljs-ln-code"><a href="#cb16-11"></a>) <span class="sc">+</span></span>
+<span id="cb16-12" class="hljs-ln-code"><a href="#cb16-12"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb16-13" class="hljs-ln-code"><a href="#cb16-13"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb16-14" class="hljs-ln-code"><a href="#cb16-14"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
+<span id="cb16-15" class="hljs-ln-code"><a href="#cb16-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-16" class="hljs-ln-code"><a href="#cb16-16"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span>
+<span id="cb16-17" class="hljs-ln-code"><a href="#cb16-17"></a></span>
+<span id="cb16-18" class="hljs-ln-code"><a href="#cb16-18"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="480"></p>
@@ -793,29 +803,29 @@ Leonard Blaschek
 <h2 data-id="quarto-animate-title">Coordinates — Cut y-axis</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="18-21"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a><span class="fu">library</span>(ggtext)</span>
-<span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb16-4" class="hljs-ln-code"><a href="#cb16-4"></a>  <span class="fu">aes</span>(</span>
-<span id="cb16-5" class="hljs-ln-code"><a href="#cb16-5"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb16-6" class="hljs-ln-code"><a href="#cb16-6"></a>      line,</span>
-<span id="cb16-7" class="hljs-ln-code"><a href="#cb16-7"></a>      lignin,</span>
-<span id="cb16-8" class="hljs-ln-code"><a href="#cb16-8"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb16-9" class="hljs-ln-code"><a href="#cb16-9"></a>    ),</span>
-<span id="cb16-10" class="hljs-ln-code"><a href="#cb16-10"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb16-11" class="hljs-ln-code"><a href="#cb16-11"></a>  )</span>
-<span id="cb16-12" class="hljs-ln-code"><a href="#cb16-12"></a>) <span class="sc">+</span></span>
-<span id="cb16-13" class="hljs-ln-code"><a href="#cb16-13"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb16-14" class="hljs-ln-code"><a href="#cb16-14"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb16-15" class="hljs-ln-code"><a href="#cb16-15"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
-<span id="cb16-16" class="hljs-ln-code"><a href="#cb16-16"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-17" class="hljs-ln-code"><a href="#cb16-17"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb16-18" class="hljs-ln-code"><a href="#cb16-18"></a>  <span class="fu">coord_cartesian</span>(</span>
-<span id="cb16-19" class="hljs-ln-code"><a href="#cb16-19"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">26</span>),</span>
-<span id="cb16-20" class="hljs-ln-code"><a href="#cb16-20"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span></span>
-<span id="cb16-21" class="hljs-ln-code"><a href="#cb16-21"></a>  )</span>
-<span id="cb16-22" class="hljs-ln-code"><a href="#cb16-22"></a></span>
-<span id="cb16-23" class="hljs-ln-code"><a href="#cb16-23"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="18-21"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb17-4" class="hljs-ln-code"><a href="#cb17-4"></a>  <span class="fu">aes</span>(</span>
+<span id="cb17-5" class="hljs-ln-code"><a href="#cb17-5"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb17-6" class="hljs-ln-code"><a href="#cb17-6"></a>      line,</span>
+<span id="cb17-7" class="hljs-ln-code"><a href="#cb17-7"></a>      lignin,</span>
+<span id="cb17-8" class="hljs-ln-code"><a href="#cb17-8"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb17-9" class="hljs-ln-code"><a href="#cb17-9"></a>    ),</span>
+<span id="cb17-10" class="hljs-ln-code"><a href="#cb17-10"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb17-11" class="hljs-ln-code"><a href="#cb17-11"></a>  )</span>
+<span id="cb17-12" class="hljs-ln-code"><a href="#cb17-12"></a>) <span class="sc">+</span></span>
+<span id="cb17-13" class="hljs-ln-code"><a href="#cb17-13"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb17-14" class="hljs-ln-code"><a href="#cb17-14"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb17-15" class="hljs-ln-code"><a href="#cb17-15"></a>    <span class="at">fun =</span> <span class="st">"mean"</span></span>
+<span id="cb17-16" class="hljs-ln-code"><a href="#cb17-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-17" class="hljs-ln-code"><a href="#cb17-17"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb17-18" class="hljs-ln-code"><a href="#cb17-18"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb17-19" class="hljs-ln-code"><a href="#cb17-19"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">26</span>),</span>
+<span id="cb17-20" class="hljs-ln-code"><a href="#cb17-20"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-21" class="hljs-ln-code"><a href="#cb17-21"></a>  )</span>
+<span id="cb17-22" class="hljs-ln-code"><a href="#cb17-22"></a></span>
+<span id="cb17-23" class="hljs-ln-code"><a href="#cb17-23"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-10-1.png" width="480"></p>
@@ -830,83 +840,44 @@ Leonard Blaschek
 <h2 data-id="quarto-animate-title">Scales — Fill by severity</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="12-14|16|19"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb17-4" class="hljs-ln-code"><a href="#cb17-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb17-5" class="hljs-ln-code"><a href="#cb17-5"></a>      line,</span>
-<span id="cb17-6" class="hljs-ln-code"><a href="#cb17-6"></a>      lignin,</span>
-<span id="cb17-7" class="hljs-ln-code"><a href="#cb17-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb17-8" class="hljs-ln-code"><a href="#cb17-8"></a>    ),</span>
-<span id="cb17-9" class="hljs-ln-code"><a href="#cb17-9"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb17-10" class="hljs-ln-code"><a href="#cb17-10"></a>  )</span>
-<span id="cb17-11" class="hljs-ln-code"><a href="#cb17-11"></a>) <span class="sc">+</span></span>
-<span id="cb17-12" class="hljs-ln-code"><a href="#cb17-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
-<span id="cb17-13" class="hljs-ln-code"><a href="#cb17-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
-<span id="cb17-14" class="hljs-ln-code"><a href="#cb17-14"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-15" class="hljs-ln-code"><a href="#cb17-15"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb17-16" class="hljs-ln-code"><a href="#cb17-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
-<span id="cb17-17" class="hljs-ln-code"><a href="#cb17-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb17-18" class="hljs-ln-code"><a href="#cb17-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
-<span id="cb17-19" class="hljs-ln-code"><a href="#cb17-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
-<span id="cb17-20" class="hljs-ln-code"><a href="#cb17-20"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-21" class="hljs-ln-code"><a href="#cb17-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span>
-<span id="cb17-22" class="hljs-ln-code"><a href="#cb17-22"></a></span>
-<span id="cb17-23" class="hljs-ln-code"><a href="#cb17-23"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="12-14|16|19"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb18-1" class="hljs-ln-code"><a href="#cb18-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb18-2" class="hljs-ln-code"><a href="#cb18-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb18-3" class="hljs-ln-code"><a href="#cb18-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb18-4" class="hljs-ln-code"><a href="#cb18-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb18-5" class="hljs-ln-code"><a href="#cb18-5"></a>      line,</span>
+<span id="cb18-6" class="hljs-ln-code"><a href="#cb18-6"></a>      lignin,</span>
+<span id="cb18-7" class="hljs-ln-code"><a href="#cb18-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-8" class="hljs-ln-code"><a href="#cb18-8"></a>    ),</span>
+<span id="cb18-9" class="hljs-ln-code"><a href="#cb18-9"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb18-10" class="hljs-ln-code"><a href="#cb18-10"></a>  )</span>
+<span id="cb18-11" class="hljs-ln-code"><a href="#cb18-11"></a>) <span class="sc">+</span></span>
+<span id="cb18-12" class="hljs-ln-code"><a href="#cb18-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb18-13" class="hljs-ln-code"><a href="#cb18-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
+<span id="cb18-14" class="hljs-ln-code"><a href="#cb18-14"></a>  ) <span class="sc">+</span> <span class="co"># colorbrewer2.org palettes</span></span>
+<span id="cb18-15" class="hljs-ln-code"><a href="#cb18-15"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb18-16" class="hljs-ln-code"><a href="#cb18-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> lignin),</span>
+<span id="cb18-17" class="hljs-ln-code"><a href="#cb18-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb18-18" class="hljs-ln-code"><a href="#cb18-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
+<span id="cb18-19" class="hljs-ln-code"><a href="#cb18-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb18-20" class="hljs-ln-code"><a href="#cb18-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-21" class="hljs-ln-code"><a href="#cb18-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span>
+<span id="cb18-22" class="hljs-ln-code"><a href="#cb18-22"></a></span>
+<span id="cb18-23" class="hljs-ln-code"><a href="#cb18-23"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="480"></p>
 </div>
 </div>
 </div>
-</section>
-<section id="theme-fix-axis-titles" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Theme — Fix axis titles</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1|23-29"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb18-1" class="hljs-ln-code"><a href="#cb18-1"></a><span class="fu">library</span>(ggtext)</span>
-<span id="cb18-2" class="hljs-ln-code"><a href="#cb18-2"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb18-3" class="hljs-ln-code"><a href="#cb18-3"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb18-4" class="hljs-ln-code"><a href="#cb18-4"></a>  <span class="fu">aes</span>(</span>
-<span id="cb18-5" class="hljs-ln-code"><a href="#cb18-5"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb18-6" class="hljs-ln-code"><a href="#cb18-6"></a>      line,</span>
-<span id="cb18-7" class="hljs-ln-code"><a href="#cb18-7"></a>      lignin,</span>
-<span id="cb18-8" class="hljs-ln-code"><a href="#cb18-8"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb18-9" class="hljs-ln-code"><a href="#cb18-9"></a>    ),</span>
-<span id="cb18-10" class="hljs-ln-code"><a href="#cb18-10"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb18-11" class="hljs-ln-code"><a href="#cb18-11"></a>  )</span>
-<span id="cb18-12" class="hljs-ln-code"><a href="#cb18-12"></a>) <span class="sc">+</span></span>
-<span id="cb18-13" class="hljs-ln-code"><a href="#cb18-13"></a>  <span class="fu">scale_fill_distiller</span>(</span>
-<span id="cb18-14" class="hljs-ln-code"><a href="#cb18-14"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
-<span id="cb18-15" class="hljs-ln-code"><a href="#cb18-15"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-16" class="hljs-ln-code"><a href="#cb18-16"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb18-17" class="hljs-ln-code"><a href="#cb18-17"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
-<span id="cb18-18" class="hljs-ln-code"><a href="#cb18-18"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb18-19" class="hljs-ln-code"><a href="#cb18-19"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
-<span id="cb18-20" class="hljs-ln-code"><a href="#cb18-20"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
-<span id="cb18-21" class="hljs-ln-code"><a href="#cb18-21"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-22" class="hljs-ln-code"><a href="#cb18-22"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb18-23" class="hljs-ln-code"><a href="#cb18-23"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-24" class="hljs-ln-code"><a href="#cb18-24"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb18-25" class="hljs-ln-code"><a href="#cb18-25"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
-<span id="cb18-26" class="hljs-ln-code"><a href="#cb18-26"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-27" class="hljs-ln-code"><a href="#cb18-27"></a>  <span class="fu">theme</span>(</span>
-<span id="cb18-28" class="hljs-ln-code"><a href="#cb18-28"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>()</span>
-<span id="cb18-29" class="hljs-ln-code"><a href="#cb18-29"></a>  )</span>
-<span id="cb18-30" class="hljs-ln-code"><a href="#cb18-30"></a></span>
-<span id="cb18-31" class="hljs-ln-code"><a href="#cb18-31"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
-<div class="cell-output-display">
-<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
-</div>
-</div>
+<div class="fragment">
+<p>That didn’t work because the bar height is <span class="highlight">calculated within the function</span></p>
 </div>
 </section>
-<section id="theme-rotate-axis-labels" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Theme — Rotate axis labels</h2>
+<section id="scales-fill-by-severity-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Scales — Fill by severity</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="28-32"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb19-1" class="hljs-ln-code"><a href="#cb19-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb19-1" class="hljs-ln-code"><a href="#cb19-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb19-2" class="hljs-ln-code"><a href="#cb19-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
 <span id="cb19-3" class="hljs-ln-code"><a href="#cb19-3"></a>  <span class="fu">aes</span>(</span>
 <span id="cb19-4" class="hljs-ln-code"><a href="#cb19-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
@@ -921,85 +892,72 @@ Leonard Blaschek
 <span id="cb19-13" class="hljs-ln-code"><a href="#cb19-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
 <span id="cb19-14" class="hljs-ln-code"><a href="#cb19-14"></a>  ) <span class="sc">+</span></span>
 <span id="cb19-15" class="hljs-ln-code"><a href="#cb19-15"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb19-16" class="hljs-ln-code"><a href="#cb19-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
+<span id="cb19-16" class="hljs-ln-code"><a href="#cb19-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(y)),</span>
 <span id="cb19-17" class="hljs-ln-code"><a href="#cb19-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
 <span id="cb19-18" class="hljs-ln-code"><a href="#cb19-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
 <span id="cb19-19" class="hljs-ln-code"><a href="#cb19-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
 <span id="cb19-20" class="hljs-ln-code"><a href="#cb19-20"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-21" class="hljs-ln-code"><a href="#cb19-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb19-22" class="hljs-ln-code"><a href="#cb19-22"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-23" class="hljs-ln-code"><a href="#cb19-23"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb19-24" class="hljs-ln-code"><a href="#cb19-24"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
-<span id="cb19-25" class="hljs-ln-code"><a href="#cb19-25"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-26" class="hljs-ln-code"><a href="#cb19-26"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-27" class="hljs-ln-code"><a href="#cb19-27"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
-<span id="cb19-28" class="hljs-ln-code"><a href="#cb19-28"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb19-29" class="hljs-ln-code"><a href="#cb19-29"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb19-30" class="hljs-ln-code"><a href="#cb19-30"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb19-31" class="hljs-ln-code"><a href="#cb19-31"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
-<span id="cb19-32" class="hljs-ln-code"><a href="#cb19-32"></a>    )</span>
-<span id="cb19-33" class="hljs-ln-code"><a href="#cb19-33"></a>  )</span>
-<span id="cb19-34" class="hljs-ln-code"><a href="#cb19-34"></a></span>
-<span id="cb19-35" class="hljs-ln-code"><a href="#cb19-35"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-21" class="hljs-ln-code"><a href="#cb19-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span>
+<span id="cb19-22" class="hljs-ln-code"><a href="#cb19-22"></a></span>
+<span id="cb19-23" class="hljs-ln-code"><a href="#cb19-23"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><code>after_stat(y)</code> tells the function to use the <code>y</code> variable <em>after</em> calculation of the stats (in this case the mean)</p>
+</div>
+</section>
+<section id="theme-fix-axis-titles" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme — Fix axis titles</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="1|23-29"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb20-1" class="hljs-ln-code"><a href="#cb20-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb20-2" class="hljs-ln-code"><a href="#cb20-2"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb20-3" class="hljs-ln-code"><a href="#cb20-3"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb20-4" class="hljs-ln-code"><a href="#cb20-4"></a>  <span class="fu">aes</span>(</span>
+<span id="cb20-5" class="hljs-ln-code"><a href="#cb20-5"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb20-6" class="hljs-ln-code"><a href="#cb20-6"></a>      line,</span>
+<span id="cb20-7" class="hljs-ln-code"><a href="#cb20-7"></a>      lignin,</span>
+<span id="cb20-8" class="hljs-ln-code"><a href="#cb20-8"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-9" class="hljs-ln-code"><a href="#cb20-9"></a>    ),</span>
+<span id="cb20-10" class="hljs-ln-code"><a href="#cb20-10"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb20-11" class="hljs-ln-code"><a href="#cb20-11"></a>  )</span>
+<span id="cb20-12" class="hljs-ln-code"><a href="#cb20-12"></a>) <span class="sc">+</span></span>
+<span id="cb20-13" class="hljs-ln-code"><a href="#cb20-13"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb20-14" class="hljs-ln-code"><a href="#cb20-14"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
+<span id="cb20-15" class="hljs-ln-code"><a href="#cb20-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-16" class="hljs-ln-code"><a href="#cb20-16"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb20-17" class="hljs-ln-code"><a href="#cb20-17"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
+<span id="cb20-18" class="hljs-ln-code"><a href="#cb20-18"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb20-19" class="hljs-ln-code"><a href="#cb20-19"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
+<span id="cb20-20" class="hljs-ln-code"><a href="#cb20-20"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb20-21" class="hljs-ln-code"><a href="#cb20-21"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-22" class="hljs-ln-code"><a href="#cb20-22"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb20-23" class="hljs-ln-code"><a href="#cb20-23"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-24" class="hljs-ln-code"><a href="#cb20-24"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-25" class="hljs-ln-code"><a href="#cb20-25"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
+<span id="cb20-26" class="hljs-ln-code"><a href="#cb20-26"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-27" class="hljs-ln-code"><a href="#cb20-27"></a>  <span class="fu">theme</span>(</span>
+<span id="cb20-28" class="hljs-ln-code"><a href="#cb20-28"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb20-29" class="hljs-ln-code"><a href="#cb20-29"></a>  )</span>
+<span id="cb20-30" class="hljs-ln-code"><a href="#cb20-30"></a></span>
+<span id="cb20-31" class="hljs-ln-code"><a href="#cb20-31"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="480"></p>
 </div>
 </div>
 </div>
+<p><code>ggtext</code> is a <code>ggplot2</code> extension that implements HTML and markdown syntax within strings</p>
 </section>
-<section id="theme-remove-legend" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Theme — Remove legend</h2>
+<section id="theme-rotate-axis-labels" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme — Rotate axis labels</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="33"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb20-1" class="hljs-ln-code"><a href="#cb20-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb20-2" class="hljs-ln-code"><a href="#cb20-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
-<span id="cb20-3" class="hljs-ln-code"><a href="#cb20-3"></a>  <span class="fu">aes</span>(</span>
-<span id="cb20-4" class="hljs-ln-code"><a href="#cb20-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
-<span id="cb20-5" class="hljs-ln-code"><a href="#cb20-5"></a>      line,</span>
-<span id="cb20-6" class="hljs-ln-code"><a href="#cb20-6"></a>      lignin,</span>
-<span id="cb20-7" class="hljs-ln-code"><a href="#cb20-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-8" class="hljs-ln-code"><a href="#cb20-8"></a>    ),</span>
-<span id="cb20-9" class="hljs-ln-code"><a href="#cb20-9"></a>    <span class="at">y =</span> lignin</span>
-<span id="cb20-10" class="hljs-ln-code"><a href="#cb20-10"></a>  )</span>
-<span id="cb20-11" class="hljs-ln-code"><a href="#cb20-11"></a>) <span class="sc">+</span></span>
-<span id="cb20-12" class="hljs-ln-code"><a href="#cb20-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
-<span id="cb20-13" class="hljs-ln-code"><a href="#cb20-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
-<span id="cb20-14" class="hljs-ln-code"><a href="#cb20-14"></a>  ) <span class="sc">+</span></span>
-<span id="cb20-15" class="hljs-ln-code"><a href="#cb20-15"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb20-16" class="hljs-ln-code"><a href="#cb20-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
-<span id="cb20-17" class="hljs-ln-code"><a href="#cb20-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
-<span id="cb20-18" class="hljs-ln-code"><a href="#cb20-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
-<span id="cb20-19" class="hljs-ln-code"><a href="#cb20-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
-<span id="cb20-20" class="hljs-ln-code"><a href="#cb20-20"></a>  ) <span class="sc">+</span></span>
-<span id="cb20-21" class="hljs-ln-code"><a href="#cb20-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb20-22" class="hljs-ln-code"><a href="#cb20-22"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-23" class="hljs-ln-code"><a href="#cb20-23"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb20-24" class="hljs-ln-code"><a href="#cb20-24"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
-<span id="cb20-25" class="hljs-ln-code"><a href="#cb20-25"></a>  ) <span class="sc">+</span></span>
-<span id="cb20-26" class="hljs-ln-code"><a href="#cb20-26"></a>  <span class="fu">theme</span>(</span>
-<span id="cb20-27" class="hljs-ln-code"><a href="#cb20-27"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
-<span id="cb20-28" class="hljs-ln-code"><a href="#cb20-28"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb20-29" class="hljs-ln-code"><a href="#cb20-29"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb20-30" class="hljs-ln-code"><a href="#cb20-30"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb20-31" class="hljs-ln-code"><a href="#cb20-31"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
-<span id="cb20-32" class="hljs-ln-code"><a href="#cb20-32"></a>    ),</span>
-<span id="cb20-33" class="hljs-ln-code"><a href="#cb20-33"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb20-34" class="hljs-ln-code"><a href="#cb20-34"></a>  )</span>
-<span id="cb20-35" class="hljs-ln-code"><a href="#cb20-35"></a></span>
-<span id="cb20-36" class="hljs-ln-code"><a href="#cb20-36"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
-<div class="cell-output-display">
-<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="480"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="theme-the-last-details" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Theme — The last details</h2>
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="22-27|32-36|37"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb21-1" class="hljs-ln-code"><a href="#cb21-1"></a>lines_bar <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="28-32"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb21-1" class="hljs-ln-code"><a href="#cb21-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb21-2" class="hljs-ln-code"><a href="#cb21-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
 <span id="cb21-3" class="hljs-ln-code"><a href="#cb21-3"></a>  <span class="fu">aes</span>(</span>
 <span id="cb21-4" class="hljs-ln-code"><a href="#cb21-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
@@ -1017,41 +975,137 @@ Leonard Blaschek
 <span id="cb21-16" class="hljs-ln-code"><a href="#cb21-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
 <span id="cb21-17" class="hljs-ln-code"><a href="#cb21-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
 <span id="cb21-18" class="hljs-ln-code"><a href="#cb21-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
-<span id="cb21-19" class="hljs-ln-code"><a href="#cb21-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
-<span id="cb21-20" class="hljs-ln-code"><a href="#cb21-20"></a>    <span class="at">width =</span> <span class="fl">0.8</span></span>
-<span id="cb21-21" class="hljs-ln-code"><a href="#cb21-21"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-22" class="hljs-ln-code"><a href="#cb21-22"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb21-23" class="hljs-ln-code"><a href="#cb21-23"></a>    <span class="at">width =</span> <span class="fl">0.1</span>,</span>
-<span id="cb21-24" class="hljs-ln-code"><a href="#cb21-24"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
-<span id="cb21-25" class="hljs-ln-code"><a href="#cb21-25"></a>    <span class="at">fill =</span> <span class="st">"black"</span>,</span>
-<span id="cb21-26" class="hljs-ln-code"><a href="#cb21-26"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
-<span id="cb21-27" class="hljs-ln-code"><a href="#cb21-27"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-28" class="hljs-ln-code"><a href="#cb21-28"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-29" class="hljs-ln-code"><a href="#cb21-29"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb21-30" class="hljs-ln-code"><a href="#cb21-30"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
-<span id="cb21-31" class="hljs-ln-code"><a href="#cb21-31"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-32" class="hljs-ln-code"><a href="#cb21-32"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb21-33" class="hljs-ln-code"><a href="#cb21-33"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(</span>
-<span id="cb21-34" class="hljs-ln-code"><a href="#cb21-34"></a>      <span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)</span>
-<span id="cb21-35" class="hljs-ln-code"><a href="#cb21-35"></a>    )</span>
-<span id="cb21-36" class="hljs-ln-code"><a href="#cb21-36"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-37" class="hljs-ln-code"><a href="#cb21-37"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
-<span id="cb21-38" class="hljs-ln-code"><a href="#cb21-38"></a>  <span class="fu">theme</span>(</span>
-<span id="cb21-39" class="hljs-ln-code"><a href="#cb21-39"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
-<span id="cb21-40" class="hljs-ln-code"><a href="#cb21-40"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb21-41" class="hljs-ln-code"><a href="#cb21-41"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb21-42" class="hljs-ln-code"><a href="#cb21-42"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb21-43" class="hljs-ln-code"><a href="#cb21-43"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
-<span id="cb21-44" class="hljs-ln-code"><a href="#cb21-44"></a>    ),</span>
-<span id="cb21-45" class="hljs-ln-code"><a href="#cb21-45"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb21-46" class="hljs-ln-code"><a href="#cb21-46"></a>  )</span>
-<span id="cb21-47" class="hljs-ln-code"><a href="#cb21-47"></a></span>
-<span id="cb21-48" class="hljs-ln-code"><a href="#cb21-48"></a>lines_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-19" class="hljs-ln-code"><a href="#cb21-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb21-20" class="hljs-ln-code"><a href="#cb21-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-21" class="hljs-ln-code"><a href="#cb21-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb21-22" class="hljs-ln-code"><a href="#cb21-22"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-23" class="hljs-ln-code"><a href="#cb21-23"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-24" class="hljs-ln-code"><a href="#cb21-24"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
+<span id="cb21-25" class="hljs-ln-code"><a href="#cb21-25"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-26" class="hljs-ln-code"><a href="#cb21-26"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-27" class="hljs-ln-code"><a href="#cb21-27"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb21-28" class="hljs-ln-code"><a href="#cb21-28"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb21-29" class="hljs-ln-code"><a href="#cb21-29"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb21-30" class="hljs-ln-code"><a href="#cb21-30"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-31" class="hljs-ln-code"><a href="#cb21-31"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb21-32" class="hljs-ln-code"><a href="#cb21-32"></a>    )</span>
+<span id="cb21-33" class="hljs-ln-code"><a href="#cb21-33"></a>  )</span>
+<span id="cb21-34" class="hljs-ln-code"><a href="#cb21-34"></a></span>
+<span id="cb21-35" class="hljs-ln-code"><a href="#cb21-35"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-remove-legend" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme — Remove legend</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="33"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb22-1" class="hljs-ln-code"><a href="#cb22-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb22-2" class="hljs-ln-code"><a href="#cb22-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb22-3" class="hljs-ln-code"><a href="#cb22-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb22-4" class="hljs-ln-code"><a href="#cb22-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb22-5" class="hljs-ln-code"><a href="#cb22-5"></a>      line,</span>
+<span id="cb22-6" class="hljs-ln-code"><a href="#cb22-6"></a>      lignin,</span>
+<span id="cb22-7" class="hljs-ln-code"><a href="#cb22-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-8" class="hljs-ln-code"><a href="#cb22-8"></a>    ),</span>
+<span id="cb22-9" class="hljs-ln-code"><a href="#cb22-9"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb22-10" class="hljs-ln-code"><a href="#cb22-10"></a>  )</span>
+<span id="cb22-11" class="hljs-ln-code"><a href="#cb22-11"></a>) <span class="sc">+</span></span>
+<span id="cb22-12" class="hljs-ln-code"><a href="#cb22-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb22-13" class="hljs-ln-code"><a href="#cb22-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
+<span id="cb22-14" class="hljs-ln-code"><a href="#cb22-14"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-15" class="hljs-ln-code"><a href="#cb22-15"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb22-16" class="hljs-ln-code"><a href="#cb22-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
+<span id="cb22-17" class="hljs-ln-code"><a href="#cb22-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb22-18" class="hljs-ln-code"><a href="#cb22-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
+<span id="cb22-19" class="hljs-ln-code"><a href="#cb22-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span></span>
+<span id="cb22-20" class="hljs-ln-code"><a href="#cb22-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-21" class="hljs-ln-code"><a href="#cb22-21"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb22-22" class="hljs-ln-code"><a href="#cb22-22"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-23" class="hljs-ln-code"><a href="#cb22-23"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-24" class="hljs-ln-code"><a href="#cb22-24"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
+<span id="cb22-25" class="hljs-ln-code"><a href="#cb22-25"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-26" class="hljs-ln-code"><a href="#cb22-26"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-27" class="hljs-ln-code"><a href="#cb22-27"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb22-28" class="hljs-ln-code"><a href="#cb22-28"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb22-29" class="hljs-ln-code"><a href="#cb22-29"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb22-30" class="hljs-ln-code"><a href="#cb22-30"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb22-31" class="hljs-ln-code"><a href="#cb22-31"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb22-32" class="hljs-ln-code"><a href="#cb22-32"></a>    ),</span>
+<span id="cb22-33" class="hljs-ln-code"><a href="#cb22-33"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb22-34" class="hljs-ln-code"><a href="#cb22-34"></a>  )</span>
+<span id="cb22-35" class="hljs-ln-code"><a href="#cb22-35"></a></span>
+<span id="cb22-36" class="hljs-ln-code"><a href="#cb22-36"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column fragment">
 <div class="cell-output-display">
 <p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-15-1.png" width="480"></p>
 </div>
 </div>
+</div>
+</section>
+<section id="theme-the-last-details" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme — The last details</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="22-27|32-36|37"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb23-1" class="hljs-ln-code"><a href="#cb23-1"></a>panel_E <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb23-2" class="hljs-ln-code"><a href="#cb23-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb23-3" class="hljs-ln-code"><a href="#cb23-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb23-4" class="hljs-ln-code"><a href="#cb23-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb23-5" class="hljs-ln-code"><a href="#cb23-5"></a>      line,</span>
+<span id="cb23-6" class="hljs-ln-code"><a href="#cb23-6"></a>      lignin,</span>
+<span id="cb23-7" class="hljs-ln-code"><a href="#cb23-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb23-8" class="hljs-ln-code"><a href="#cb23-8"></a>    ),</span>
+<span id="cb23-9" class="hljs-ln-code"><a href="#cb23-9"></a>    <span class="at">y =</span> lignin</span>
+<span id="cb23-10" class="hljs-ln-code"><a href="#cb23-10"></a>  )</span>
+<span id="cb23-11" class="hljs-ln-code"><a href="#cb23-11"></a>) <span class="sc">+</span></span>
+<span id="cb23-12" class="hljs-ln-code"><a href="#cb23-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb23-13" class="hljs-ln-code"><a href="#cb23-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span></span>
+<span id="cb23-14" class="hljs-ln-code"><a href="#cb23-14"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-15" class="hljs-ln-code"><a href="#cb23-15"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb23-16" class="hljs-ln-code"><a href="#cb23-16"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
+<span id="cb23-17" class="hljs-ln-code"><a href="#cb23-17"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb23-18" class="hljs-ln-code"><a href="#cb23-18"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
+<span id="cb23-19" class="hljs-ln-code"><a href="#cb23-19"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb23-20" class="hljs-ln-code"><a href="#cb23-20"></a>    <span class="at">width =</span> <span class="fl">0.8</span></span>
+<span id="cb23-21" class="hljs-ln-code"><a href="#cb23-21"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-22" class="hljs-ln-code"><a href="#cb23-22"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb23-23" class="hljs-ln-code"><a href="#cb23-23"></a>    <span class="at">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb23-24" class="hljs-ln-code"><a href="#cb23-24"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb23-25" class="hljs-ln-code"><a href="#cb23-25"></a>    <span class="at">fill =</span> <span class="st">"black"</span>,</span>
+<span id="cb23-26" class="hljs-ln-code"><a href="#cb23-26"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb23-27" class="hljs-ln-code"><a href="#cb23-27"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-28" class="hljs-ln-code"><a href="#cb23-28"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-29" class="hljs-ln-code"><a href="#cb23-29"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-30" class="hljs-ln-code"><a href="#cb23-30"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Lignin content&lt;/b&gt; (% wt)"</span></span>
+<span id="cb23-31" class="hljs-ln-code"><a href="#cb23-31"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-32" class="hljs-ln-code"><a href="#cb23-32"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb23-33" class="hljs-ln-code"><a href="#cb23-33"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(</span>
+<span id="cb23-34" class="hljs-ln-code"><a href="#cb23-34"></a>      <span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)</span>
+<span id="cb23-35" class="hljs-ln-code"><a href="#cb23-35"></a>    )</span>
+<span id="cb23-36" class="hljs-ln-code"><a href="#cb23-36"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-37" class="hljs-ln-code"><a href="#cb23-37"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb23-38" class="hljs-ln-code"><a href="#cb23-38"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-39" class="hljs-ln-code"><a href="#cb23-39"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb23-40" class="hljs-ln-code"><a href="#cb23-40"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb23-41" class="hljs-ln-code"><a href="#cb23-41"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb23-42" class="hljs-ln-code"><a href="#cb23-42"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb23-43" class="hljs-ln-code"><a href="#cb23-43"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb23-44" class="hljs-ln-code"><a href="#cb23-44"></a>    ),</span>
+<span id="cb23-45" class="hljs-ln-code"><a href="#cb23-45"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb23-46" class="hljs-ln-code"><a href="#cb23-46"></a>  )</span>
+<span id="cb23-47" class="hljs-ln-code"><a href="#cb23-47"></a></span>
+<span id="cb23-48" class="hljs-ln-code"><a href="#cb23-48"></a>panel_E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="480"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Applying a <code>theme_*()</code> can completely change the look — see how to make your own in the exercise file</p>
 </div>
 </section>
 <section class="slide level2">
@@ -1062,101 +1116,630 @@ Leonard Blaschek
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="480"></p>
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-17-1.png" width="480"></p>
 </div>
 </div>
 <p><span class="absolute" style="left: 600px; bottom: 120px; ">Our first ggplot.</span> <span class="absolute" style="left: 600px; bottom: 0px; ">Text for ants? We’ll fix that later.</span></p>
 </div>
 </div>
 </section>
-<section id="geoms" class="slide level2">
-<h2>Geoms</h2>
-<ul>
-<li>geom_point()</li>
-<li>geom_jitter()</li>
-<li>geom_line()</li>
-<li><span class="reveal highlight">geom_errorbar()</span></li>
-<li>geom_smooth()</li>
-<li>geom_boxplot()</li>
-</ul>
+<section id="next-panel-same-code-with-a-few-adjustments" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Next panel — same code with a few adjustments</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="1|9|14|31"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb24-1" class="hljs-ln-code"><a href="#cb24-1"></a>panel_F <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb24-2" class="hljs-ln-code"><a href="#cb24-2"></a>  <span class="at">data =</span> sulis_bar_data,</span>
+<span id="cb24-3" class="hljs-ln-code"><a href="#cb24-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb24-4" class="hljs-ln-code"><a href="#cb24-4"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(</span>
+<span id="cb24-5" class="hljs-ln-code"><a href="#cb24-5"></a>      line,</span>
+<span id="cb24-6" class="hljs-ln-code"><a href="#cb24-6"></a>      lignin,</span>
+<span id="cb24-7" class="hljs-ln-code"><a href="#cb24-7"></a>      <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb24-8" class="hljs-ln-code"><a href="#cb24-8"></a>    ),</span>
+<span id="cb24-9" class="hljs-ln-code"><a href="#cb24-9"></a>    <span class="at">y =</span> CL</span>
+<span id="cb24-10" class="hljs-ln-code"><a href="#cb24-10"></a>  )</span>
+<span id="cb24-11" class="hljs-ln-code"><a href="#cb24-11"></a>) <span class="sc">+</span></span>
+<span id="cb24-12" class="hljs-ln-code"><a href="#cb24-12"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb24-13" class="hljs-ln-code"><a href="#cb24-13"></a>    <span class="at">palette =</span> <span class="st">"Greys"</span>,</span>
+<span id="cb24-14" class="hljs-ln-code"><a href="#cb24-14"></a>    <span class="at">direction =</span> <span class="dv">1</span></span>
+<span id="cb24-15" class="hljs-ln-code"><a href="#cb24-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-16" class="hljs-ln-code"><a href="#cb24-16"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb24-17" class="hljs-ln-code"><a href="#cb24-17"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> ..y..),</span>
+<span id="cb24-18" class="hljs-ln-code"><a href="#cb24-18"></a>    <span class="at">stat =</span> <span class="st">"summary"</span>,</span>
+<span id="cb24-19" class="hljs-ln-code"><a href="#cb24-19"></a>    <span class="at">fun =</span> <span class="st">"mean"</span>,</span>
+<span id="cb24-20" class="hljs-ln-code"><a href="#cb24-20"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb24-21" class="hljs-ln-code"><a href="#cb24-21"></a>    <span class="at">width =</span> <span class="fl">0.8</span></span>
+<span id="cb24-22" class="hljs-ln-code"><a href="#cb24-22"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-23" class="hljs-ln-code"><a href="#cb24-23"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb24-24" class="hljs-ln-code"><a href="#cb24-24"></a>    <span class="at">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb24-25" class="hljs-ln-code"><a href="#cb24-25"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb24-26" class="hljs-ln-code"><a href="#cb24-26"></a>    <span class="at">fill =</span> <span class="st">"black"</span>,</span>
+<span id="cb24-27" class="hljs-ln-code"><a href="#cb24-27"></a>    <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb24-28" class="hljs-ln-code"><a href="#cb24-28"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-29" class="hljs-ln-code"><a href="#cb24-29"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-30" class="hljs-ln-code"><a href="#cb24-30"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-31" class="hljs-ln-code"><a href="#cb24-31"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;C/L ratio&lt;/b&gt;"</span></span>
+<span id="cb24-32" class="hljs-ln-code"><a href="#cb24-32"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-33" class="hljs-ln-code"><a href="#cb24-33"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb24-34" class="hljs-ln-code"><a href="#cb24-34"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(</span>
+<span id="cb24-35" class="hljs-ln-code"><a href="#cb24-35"></a>      <span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)</span>
+<span id="cb24-36" class="hljs-ln-code"><a href="#cb24-36"></a>    )</span>
+<span id="cb24-37" class="hljs-ln-code"><a href="#cb24-37"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-38" class="hljs-ln-code"><a href="#cb24-38"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb24-39" class="hljs-ln-code"><a href="#cb24-39"></a>  <span class="fu">theme</span>(</span>
+<span id="cb24-40" class="hljs-ln-code"><a href="#cb24-40"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb24-41" class="hljs-ln-code"><a href="#cb24-41"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb24-42" class="hljs-ln-code"><a href="#cb24-42"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb24-43" class="hljs-ln-code"><a href="#cb24-43"></a>      <span class="at">vjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb24-44" class="hljs-ln-code"><a href="#cb24-44"></a>      <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb24-45" class="hljs-ln-code"><a href="#cb24-45"></a>    ),</span>
+<span id="cb24-46" class="hljs-ln-code"><a href="#cb24-46"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb24-47" class="hljs-ln-code"><a href="#cb24-47"></a>  )</span>
+<span id="cb24-48" class="hljs-ln-code"><a href="#cb24-48"></a></span>
+<span id="cb24-49" class="hljs-ln-code"><a href="#cb24-49"></a>panel_F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="480"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="scales" class="slide level2">
-<h2>Scales</h2>
-<ul>
-<li>scale_*_*(values, name, guide)</li>
-</ul>
-</section>
-<section id="coords" class="slide level2">
-<h2>Coords</h2>
-<ul>
-<li>coord_cartesian(xlim, ylim, expand)</li>
-<li>coord_trans(x, y)</li>
-<li>coord_fixed()</li>
-</ul>
-</section>
-<section id="facets" class="slide level2">
-<h2>Facets</h2>
-<ul>
-<li>facet_wrap()</li>
-<li>facet_grid()</li>
-</ul>
-</section>
-<section id="themes" class="slide level2">
-<h2>Themes</h2>
-<ul>
-<li>minimal</li>
-<li>hrbrmstr</li>
-</ul>
-</section></section>
-<section id="assembling-plots" class="title-slide slide level1 center">
-<h1>3. Assembling plots</h1>
-<ul>
-<li>patchwork</li>
-</ul>
-</section>
+<section class="slide level2">
 
+<p><strong>Multiplex CRISPR editing of wood for sustainable fiber production.</strong> Sulis DB, […], Barrangou R, Wang JP. 2023. <em>Science</em> 381:216–221. <a href="https://doi.org/10.1126/science.add4514">10.1126/science.add4514</a></p>
+<p><br></p>
+
+<img data-src="images/Sulis_fig3.png" class="r-stretch quarto-figure-center"><p class="caption">Three panels from main figure 3.</p></section>
+<section id="load-data" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Load data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb25-1" class="hljs-ln-code"><a href="#cb25-1"></a>sulis_scatter_data <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/Sulis2023_fig3G.tsv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-basic-scatterplot" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">The basic scatterplot</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers=""><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb26-1" class="hljs-ln-code"><a href="#cb26-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb26-2" class="hljs-ln-code"><a href="#cb26-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb26-3" class="hljs-ln-code"><a href="#cb26-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb26-4" class="hljs-ln-code"><a href="#cb26-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb26-5" class="hljs-ln-code"><a href="#cb26-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb26-6" class="hljs-ln-code"><a href="#cb26-6"></a>  )</span>
+<span id="cb26-7" class="hljs-ln-code"><a href="#cb26-7"></a>) <span class="sc">+</span></span>
+<span id="cb26-8" class="hljs-ln-code"><a href="#cb26-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-9" class="hljs-ln-code"><a href="#cb26-9"></a>  <span class="fu">theme_sulis</span>()</span>
+<span id="cb26-10" class="hljs-ln-code"><a href="#cb26-10"></a></span>
+<span id="cb26-11" class="hljs-ln-code"><a href="#cb26-11"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-20-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="colour-the-points" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Colour the points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="8-13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb27-1" class="hljs-ln-code"><a href="#cb27-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb27-2" class="hljs-ln-code"><a href="#cb27-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb27-3" class="hljs-ln-code"><a href="#cb27-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb27-4" class="hljs-ln-code"><a href="#cb27-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb27-5" class="hljs-ln-code"><a href="#cb27-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb27-6" class="hljs-ln-code"><a href="#cb27-6"></a>  )</span>
+<span id="cb27-7" class="hljs-ln-code"><a href="#cb27-7"></a>) <span class="sc">+</span></span>
+<span id="cb27-8" class="hljs-ln-code"><a href="#cb27-8"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb27-9" class="hljs-ln-code"><a href="#cb27-9"></a>    <span class="fu">aes</span>(<span class="at">colour =</span> type)</span>
+<span id="cb27-10" class="hljs-ln-code"><a href="#cb27-10"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-11" class="hljs-ln-code"><a href="#cb27-11"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb27-12" class="hljs-ln-code"><a href="#cb27-12"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)</span>
+<span id="cb27-13" class="hljs-ln-code"><a href="#cb27-13"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-14" class="hljs-ln-code"><a href="#cb27-14"></a>  <span class="fu">theme_sulis</span>()</span>
+<span id="cb27-15" class="hljs-ln-code"><a href="#cb27-15"></a></span>
+<span id="cb27-16" class="hljs-ln-code"><a href="#cb27-16"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-21-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="colour-the-points-hex-codes" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Colour the points — hex codes</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb28-1" class="hljs-ln-code"><a href="#cb28-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb28-2" class="hljs-ln-code"><a href="#cb28-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb28-3" class="hljs-ln-code"><a href="#cb28-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb28-4" class="hljs-ln-code"><a href="#cb28-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb28-5" class="hljs-ln-code"><a href="#cb28-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb28-6" class="hljs-ln-code"><a href="#cb28-6"></a>  )</span>
+<span id="cb28-7" class="hljs-ln-code"><a href="#cb28-7"></a>) <span class="sc">+</span></span>
+<span id="cb28-8" class="hljs-ln-code"><a href="#cb28-8"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb28-9" class="hljs-ln-code"><a href="#cb28-9"></a>    <span class="fu">aes</span>(<span class="at">colour =</span> type)</span>
+<span id="cb28-10" class="hljs-ln-code"><a href="#cb28-10"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-11" class="hljs-ln-code"><a href="#cb28-11"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb28-12" class="hljs-ln-code"><a href="#cb28-12"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb28-13" class="hljs-ln-code"><a href="#cb28-13"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-14" class="hljs-ln-code"><a href="#cb28-14"></a>  <span class="fu">theme_sulis</span>()</span>
+<span id="cb28-15" class="hljs-ln-code"><a href="#cb28-15"></a></span>
+<span id="cb28-16" class="hljs-ln-code"><a href="#cb28-16"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="colour-and-fill-the-points" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Colour <em>and fill</em> the points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="11|13-15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb29-1" class="hljs-ln-code"><a href="#cb29-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb29-2" class="hljs-ln-code"><a href="#cb29-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb29-3" class="hljs-ln-code"><a href="#cb29-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb29-4" class="hljs-ln-code"><a href="#cb29-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb29-5" class="hljs-ln-code"><a href="#cb29-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb29-6" class="hljs-ln-code"><a href="#cb29-6"></a>  )</span>
+<span id="cb29-7" class="hljs-ln-code"><a href="#cb29-7"></a>) <span class="sc">+</span></span>
+<span id="cb29-8" class="hljs-ln-code"><a href="#cb29-8"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb29-9" class="hljs-ln-code"><a href="#cb29-9"></a>    <span class="fu">aes</span>(</span>
+<span id="cb29-10" class="hljs-ln-code"><a href="#cb29-10"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb29-11" class="hljs-ln-code"><a href="#cb29-11"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(</span>
+<span id="cb29-12" class="hljs-ln-code"><a href="#cb29-12"></a>        <span class="fu">alpha</span>(colour, <span class="fl">0.4</span>)</span>
+<span id="cb29-13" class="hljs-ln-code"><a href="#cb29-13"></a>        )</span>
+<span id="cb29-14" class="hljs-ln-code"><a href="#cb29-14"></a>    ),</span>
+<span id="cb29-15" class="hljs-ln-code"><a href="#cb29-15"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb29-16" class="hljs-ln-code"><a href="#cb29-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-17" class="hljs-ln-code"><a href="#cb29-17"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb29-18" class="hljs-ln-code"><a href="#cb29-18"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb29-19" class="hljs-ln-code"><a href="#cb29-19"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-20" class="hljs-ln-code"><a href="#cb29-20"></a>  <span class="fu">theme_sulis</span>()</span>
+<span id="cb29-21" class="hljs-ln-code"><a href="#cb29-21"></a></span>
+<span id="cb29-22" class="hljs-ln-code"><a href="#cb29-22"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="reposition-the-legend" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Reposition the legend</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="20-23"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb30-1" class="hljs-ln-code"><a href="#cb30-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb30-2" class="hljs-ln-code"><a href="#cb30-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb30-3" class="hljs-ln-code"><a href="#cb30-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb30-4" class="hljs-ln-code"><a href="#cb30-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb30-5" class="hljs-ln-code"><a href="#cb30-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb30-6" class="hljs-ln-code"><a href="#cb30-6"></a>  )</span>
+<span id="cb30-7" class="hljs-ln-code"><a href="#cb30-7"></a>) <span class="sc">+</span></span>
+<span id="cb30-8" class="hljs-ln-code"><a href="#cb30-8"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb30-9" class="hljs-ln-code"><a href="#cb30-9"></a>    <span class="fu">aes</span>(</span>
+<span id="cb30-10" class="hljs-ln-code"><a href="#cb30-10"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb30-11" class="hljs-ln-code"><a href="#cb30-11"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(</span>
+<span id="cb30-12" class="hljs-ln-code"><a href="#cb30-12"></a>        <span class="fu">alpha</span>(colour, <span class="fl">0.4</span>)</span>
+<span id="cb30-13" class="hljs-ln-code"><a href="#cb30-13"></a>      )</span>
+<span id="cb30-14" class="hljs-ln-code"><a href="#cb30-14"></a>    ),</span>
+<span id="cb30-15" class="hljs-ln-code"><a href="#cb30-15"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb30-16" class="hljs-ln-code"><a href="#cb30-16"></a>  ) <span class="sc">+</span></span>
+<span id="cb30-17" class="hljs-ln-code"><a href="#cb30-17"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb30-18" class="hljs-ln-code"><a href="#cb30-18"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb30-19" class="hljs-ln-code"><a href="#cb30-19"></a>  ) <span class="sc">+</span></span>
+<span id="cb30-20" class="hljs-ln-code"><a href="#cb30-20"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb30-21" class="hljs-ln-code"><a href="#cb30-21"></a>  <span class="fu">theme</span>(</span>
+<span id="cb30-22" class="hljs-ln-code"><a href="#cb30-22"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb30-23" class="hljs-ln-code"><a href="#cb30-23"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb30-24" class="hljs-ln-code"><a href="#cb30-24"></a>  )</span>
+<span id="cb30-25" class="hljs-ln-code"><a href="#cb30-25"></a></span>
+<span id="cb30-26" class="hljs-ln-code"><a href="#cb30-26"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-24-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="add-horizontal-line" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Add horizontal line</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="8-12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb31-1" class="hljs-ln-code"><a href="#cb31-1"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb31-2" class="hljs-ln-code"><a href="#cb31-2"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb31-3" class="hljs-ln-code"><a href="#cb31-3"></a>  <span class="fu">aes</span>(</span>
+<span id="cb31-4" class="hljs-ln-code"><a href="#cb31-4"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb31-5" class="hljs-ln-code"><a href="#cb31-5"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb31-6" class="hljs-ln-code"><a href="#cb31-6"></a>  )</span>
+<span id="cb31-7" class="hljs-ln-code"><a href="#cb31-7"></a>) <span class="sc">+</span></span>
+<span id="cb31-8" class="hljs-ln-code"><a href="#cb31-8"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb31-9" class="hljs-ln-code"><a href="#cb31-9"></a>    <span class="at">yintercept =</span> <span class="dv">100</span>,</span>
+<span id="cb31-10" class="hljs-ln-code"><a href="#cb31-10"></a>    <span class="at">colour =</span> <span class="st">"grey"</span>,</span>
+<span id="cb31-11" class="hljs-ln-code"><a href="#cb31-11"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb31-12" class="hljs-ln-code"><a href="#cb31-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-13" class="hljs-ln-code"><a href="#cb31-13"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb31-14" class="hljs-ln-code"><a href="#cb31-14"></a>    <span class="fu">aes</span>(</span>
+<span id="cb31-15" class="hljs-ln-code"><a href="#cb31-15"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb31-16" class="hljs-ln-code"><a href="#cb31-16"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(<span class="fu">alpha</span>(colour, <span class="fl">0.4</span>))</span>
+<span id="cb31-17" class="hljs-ln-code"><a href="#cb31-17"></a>    ),</span>
+<span id="cb31-18" class="hljs-ln-code"><a href="#cb31-18"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb31-19" class="hljs-ln-code"><a href="#cb31-19"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-20" class="hljs-ln-code"><a href="#cb31-20"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb31-21" class="hljs-ln-code"><a href="#cb31-21"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb31-22" class="hljs-ln-code"><a href="#cb31-22"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-23" class="hljs-ln-code"><a href="#cb31-23"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb31-24" class="hljs-ln-code"><a href="#cb31-24"></a>  <span class="fu">theme</span>(</span>
+<span id="cb31-25" class="hljs-ln-code"><a href="#cb31-25"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb31-26" class="hljs-ln-code"><a href="#cb31-26"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb31-27" class="hljs-ln-code"><a href="#cb31-27"></a>  )</span>
+<span id="cb31-28" class="hljs-ln-code"><a href="#cb31-28"></a></span>
+<span id="cb31-29" class="hljs-ln-code"><a href="#cb31-29"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-25-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-last-details" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">The last details</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/Sulis_fig3K.png"> <span class="absolute" style="left: 0px; bottom: 120px; ">Figure from the paper.</span></p>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-26-1.png" width="480"></p>
+</div>
+</div>
+<p><span class="absolute" style="left: 600px; bottom: 120px; ">Our <em>third</em> ggplot.</span></p>
+</div>
+</div>
+</section>
+<section id="bonus-label-interesting-points" class="slide level2">
+<h2>Bonus: label interesting points</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 7
+   line  replicate type                label rel_lignin rel_CL rel_volume
+   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+ 1 WT            1 Wildtype            &lt;NA&gt;       103.    97.2       89.6
+ 2 WT            2 Wildtype            &lt;NA&gt;        99.6  100.        98.6
+ 3 WT            3 Wildtype            &lt;NA&gt;        97.9  102.       113. 
+ 4 H-4           1 CRISPR-edited lines H-4-1       67.0  146.       106. 
+ 5 H-4           2 CRISPR-edited lines H-4-2       69.9  136.        66.2
+ 6 H-18          1 CRISPR-edited lines &lt;NA&gt;        70.8  150.        72.6
+ 7 H-19          1 CRISPR-edited lines &lt;NA&gt;        89.3  105.        85.6
+ 8 H-19          2 CRISPR-edited lines &lt;NA&gt;        87.6  101.       103. 
+ 9 H-19          3 CRISPR-edited lines &lt;NA&gt;        79.3  117.        63.2
+10 H-19          4 CRISPR-edited lines &lt;NA&gt;        98.8   99.1       52.1
+11 H-20          1 CRISPR-edited lines &lt;NA&gt;        95.5  111.        95.0
+12 H-20          2 CRISPR-edited lines &lt;NA&gt;        79.8  128.        92.5
+13 H-20          3 CRISPR-edited lines &lt;NA&gt;        85.3  130.        75.9</code></pre>
+</div>
+</div>
+</section>
+<section id="bonus-label-interesting-points-1" class="slide level2">
+<h2>Bonus: label interesting points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="1|21-23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">aes</span>(</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb33-7"><a href="#cb33-7"></a>  )</span>
+<span id="cb33-8"><a href="#cb33-8"></a>) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="at">yintercept =</span> <span class="dv">100</span>,</span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="at">colour =</span> <span class="st">"grey"</span>,</span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb33-13"><a href="#cb33-13"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-14"><a href="#cb33-14"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb33-15"><a href="#cb33-15"></a>    <span class="fu">aes</span>(</span>
+<span id="cb33-16"><a href="#cb33-16"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb33-17"><a href="#cb33-17"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(<span class="fu">alpha</span>(colour, <span class="fl">0.4</span>))</span>
+<span id="cb33-18"><a href="#cb33-18"></a>    ),</span>
+<span id="cb33-19"><a href="#cb33-19"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb33-20"><a href="#cb33-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-21"><a href="#cb33-21"></a>  <span class="fu">geom_label_repel</span>(</span>
+<span id="cb33-22"><a href="#cb33-22"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb33-23"><a href="#cb33-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-24"><a href="#cb33-24"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb33-25"><a href="#cb33-25"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb33-26"><a href="#cb33-26"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-27"><a href="#cb33-27"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-28"><a href="#cb33-28"></a>    <span class="at">x =</span> <span class="st">"**Lignin content** (% of wildtype)"</span>,</span>
+<span id="cb33-29"><a href="#cb33-29"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Stem volume&lt;/b&gt; (% of wildtype)"</span></span>
+<span id="cb33-30"><a href="#cb33-30"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-31"><a href="#cb33-31"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb33-32"><a href="#cb33-32"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-33"><a href="#cb33-33"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb33-34"><a href="#cb33-34"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb33-35"><a href="#cb33-35"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb33-36"><a href="#cb33-36"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb33-37"><a href="#cb33-37"></a>  )</span>
+<span id="cb33-38"><a href="#cb33-38"></a></span>
+<span id="cb33-39"><a href="#cb33-39"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="480"></p>
+</div>
+</div>
+</div>
+<p><span class="fragment"><code>ggrepel</code> creates labels that automatically avoid overlapping</span></p>
+</section>
+<section id="bonus-label-interesting-points-2" class="slide level2">
+<h2>Bonus: label interesting points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">aes</span>(</span>
+<span id="cb34-5"><a href="#cb34-5"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb34-6"><a href="#cb34-6"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb34-7"><a href="#cb34-7"></a>  )</span>
+<span id="cb34-8"><a href="#cb34-8"></a>) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb34-10"><a href="#cb34-10"></a>    <span class="at">yintercept =</span> <span class="dv">100</span>,</span>
+<span id="cb34-11"><a href="#cb34-11"></a>    <span class="at">colour =</span> <span class="st">"grey"</span>,</span>
+<span id="cb34-12"><a href="#cb34-12"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb34-13"><a href="#cb34-13"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-14"><a href="#cb34-14"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb34-15"><a href="#cb34-15"></a>    <span class="fu">aes</span>(</span>
+<span id="cb34-16"><a href="#cb34-16"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb34-17"><a href="#cb34-17"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(<span class="fu">alpha</span>(colour, <span class="fl">0.4</span>))</span>
+<span id="cb34-18"><a href="#cb34-18"></a>    ),</span>
+<span id="cb34-19"><a href="#cb34-19"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb34-20"><a href="#cb34-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-21"><a href="#cb34-21"></a>  <span class="fu">geom_label_repel</span>(</span>
+<span id="cb34-22"><a href="#cb34-22"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb34-23"><a href="#cb34-23"></a>    <span class="at">size =</span> <span class="dv">8</span></span>
+<span id="cb34-24"><a href="#cb34-24"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-25"><a href="#cb34-25"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb34-26"><a href="#cb34-26"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb34-27"><a href="#cb34-27"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-28"><a href="#cb34-28"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-29"><a href="#cb34-29"></a>    <span class="at">x =</span> <span class="st">"**Lignin content** (% of wildtype)"</span>,</span>
+<span id="cb34-30"><a href="#cb34-30"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Stem volume&lt;/b&gt; (% of wildtype)"</span></span>
+<span id="cb34-31"><a href="#cb34-31"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-32"><a href="#cb34-32"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb34-33"><a href="#cb34-33"></a>  <span class="fu">theme</span>(</span>
+<span id="cb34-34"><a href="#cb34-34"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb34-35"><a href="#cb34-35"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb34-36"><a href="#cb34-36"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb34-37"><a href="#cb34-37"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb34-38"><a href="#cb34-38"></a>  )</span>
+<span id="cb34-39"><a href="#cb34-39"></a></span>
+<span id="cb34-40"><a href="#cb34-40"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="480"></p>
+</div>
+</div>
+</div>
+<p><span class="fragment">Geom_* size is defined in mm, theme elements in pt</span></p>
+</section>
+<section id="bonus-label-interesting-points-3" class="slide level2">
+<h2>Bonus: label interesting points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="1|24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>ggtext_size <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">/</span> (<span class="dv">14</span> <span class="sc">/</span> <span class="dv">5</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">aes</span>(</span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb35-8"><a href="#cb35-8"></a>  )</span>
+<span id="cb35-9"><a href="#cb35-9"></a>) <span class="sc">+</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb35-11"><a href="#cb35-11"></a>    <span class="at">yintercept =</span> <span class="dv">100</span>,</span>
+<span id="cb35-12"><a href="#cb35-12"></a>    <span class="at">colour =</span> <span class="st">"grey"</span>,</span>
+<span id="cb35-13"><a href="#cb35-13"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="#cb35-15"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb35-16"><a href="#cb35-16"></a>    <span class="fu">aes</span>(</span>
+<span id="cb35-17"><a href="#cb35-17"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb35-18"><a href="#cb35-18"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(<span class="fu">alpha</span>(colour, <span class="fl">0.4</span>))</span>
+<span id="cb35-19"><a href="#cb35-19"></a>    ),</span>
+<span id="cb35-20"><a href="#cb35-20"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-22"><a href="#cb35-22"></a>  <span class="fu">geom_label_repel</span>(</span>
+<span id="cb35-23"><a href="#cb35-23"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb35-24"><a href="#cb35-24"></a>    <span class="at">size =</span> ggtext_size</span>
+<span id="cb35-25"><a href="#cb35-25"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-26"><a href="#cb35-26"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb35-27"><a href="#cb35-27"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb35-28"><a href="#cb35-28"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-29"><a href="#cb35-29"></a>  <span class="fu">labs</span>(</span>
+<span id="cb35-30"><a href="#cb35-30"></a>    <span class="at">x =</span> <span class="st">"**Lignin content** (% of wildtype)"</span>,</span>
+<span id="cb35-31"><a href="#cb35-31"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Stem volume&lt;/b&gt; (% of wildtype)"</span></span>
+<span id="cb35-32"><a href="#cb35-32"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-33"><a href="#cb35-33"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb35-34"><a href="#cb35-34"></a>  <span class="fu">theme</span>(</span>
+<span id="cb35-35"><a href="#cb35-35"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb35-36"><a href="#cb35-36"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb35-37"><a href="#cb35-37"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb35-38"><a href="#cb35-38"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb35-39"><a href="#cb35-39"></a>  )</span>
+<span id="cb35-40"><a href="#cb35-40"></a></span>
+<span id="cb35-41"><a href="#cb35-41"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column fragment">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-30-1.png" width="480"></p>
+</div>
+</div>
+</div>
+<p>14 to 5 is the ratio of pt to mm</p>
+</section>
+<section id="bonus-label-interesting-points-4" class="slide level2">
+<h2>Bonus: label interesting points</h2>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="25-27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>ggtext_size <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">/</span> (<span class="dv">14</span> <span class="sc">/</span> <span class="dv">5</span>)</span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb36-3"><a href="#cb36-3"></a>panel_K <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="at">data =</span> sulis_scatter_data,</span>
+<span id="cb36-5"><a href="#cb36-5"></a>  <span class="fu">aes</span>(</span>
+<span id="cb36-6"><a href="#cb36-6"></a>    <span class="at">x =</span> rel_lignin,</span>
+<span id="cb36-7"><a href="#cb36-7"></a>    <span class="at">y =</span> rel_volume</span>
+<span id="cb36-8"><a href="#cb36-8"></a>  )</span>
+<span id="cb36-9"><a href="#cb36-9"></a>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb36-11"><a href="#cb36-11"></a>    <span class="at">yintercept =</span> <span class="dv">100</span>,</span>
+<span id="cb36-12"><a href="#cb36-12"></a>    <span class="at">colour =</span> <span class="st">"grey"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb36-14"><a href="#cb36-14"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-15"><a href="#cb36-15"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb36-16"><a href="#cb36-16"></a>    <span class="fu">aes</span>(</span>
+<span id="cb36-17"><a href="#cb36-17"></a>      <span class="at">colour =</span> type,</span>
+<span id="cb36-18"><a href="#cb36-18"></a>      <span class="at">fill =</span> <span class="fu">after_scale</span>(<span class="fu">alpha</span>(colour, <span class="fl">0.4</span>))</span>
+<span id="cb36-19"><a href="#cb36-19"></a>    ),</span>
+<span id="cb36-20"><a href="#cb36-20"></a>    <span class="at">shape =</span> <span class="st">"circle filled"</span></span>
+<span id="cb36-21"><a href="#cb36-21"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-22"><a href="#cb36-22"></a>  <span class="fu">geom_label_repel</span>(</span>
+<span id="cb36-23"><a href="#cb36-23"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb36-24"><a href="#cb36-24"></a>    <span class="at">size =</span> ggtext_size,</span>
+<span id="cb36-25"><a href="#cb36-25"></a>    <span class="at">label.size =</span> <span class="cn">NA</span>,</span>
+<span id="cb36-26"><a href="#cb36-26"></a>    <span class="at">fill =</span> <span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb36-27"><a href="#cb36-27"></a>    <span class="at">min.segment.length =</span> <span class="dv">0</span></span>
+<span id="cb36-28"><a href="#cb36-28"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-29"><a href="#cb36-29"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb36-30"><a href="#cb36-30"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#275d95"</span>, <span class="st">"#d25952"</span>)</span>
+<span id="cb36-31"><a href="#cb36-31"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-32"><a href="#cb36-32"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-33"><a href="#cb36-33"></a>    <span class="at">x =</span> <span class="st">"**Lignin content** (% of wildtype)"</span>,</span>
+<span id="cb36-34"><a href="#cb36-34"></a>    <span class="at">y =</span> <span class="st">"&lt;b&gt;Stem volume&lt;/b&gt; (% of wildtype)"</span></span>
+<span id="cb36-35"><a href="#cb36-35"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-36"><a href="#cb36-36"></a>  <span class="fu">theme_sulis</span>() <span class="sc">+</span></span>
+<span id="cb36-37"><a href="#cb36-37"></a>  <span class="fu">theme</span>(</span>
+<span id="cb36-38"><a href="#cb36-38"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb36-39"><a href="#cb36-39"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb36-40"><a href="#cb36-40"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.95</span>),</span>
+<span id="cb36-41"><a href="#cb36-41"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb36-42"><a href="#cb36-42"></a>  )</span>
+<span id="cb36-43"><a href="#cb36-43"></a></span>
+<span id="cb36-44"><a href="#cb36-44"></a>panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-31-1.png" width="480"></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="assembling-a-figure" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">3. Assembling a figure</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb37-1" class="hljs-ln-code"><a href="#cb37-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb37-2" class="hljs-ln-code"><a href="#cb37-2"></a>panel_E <span class="sc">+</span> panel_F <span class="sc">+</span> panel_K</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-32-1.png" width="768" class="r-stretch"><p><span class="fragment"><code>patchwork</code> automatically aligns plots into multi-panel figures</span></p>
+</section>
+<section id="adjust-relative-widths" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Adjust relative widths</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb38-1" class="hljs-ln-code"><a href="#cb38-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb38-2" class="hljs-ln-code"><a href="#cb38-2"></a>panel_E <span class="sc">+</span> panel_F <span class="sc">+</span> panel_K <span class="sc">+</span></span>
+<span id="cb38-3" class="hljs-ln-code"><a href="#cb38-3"></a>  <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="768" class="r-stretch"></section>
+<section id="add-panel-labels" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Add panel labels</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb39-1" class="hljs-ln-code"><a href="#cb39-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb39-2" class="hljs-ln-code"><a href="#cb39-2"></a>panel_E <span class="sc">+</span> panel_F <span class="sc">+</span> panel_K <span class="sc">+</span></span>
+<span id="cb39-3" class="hljs-ln-code"><a href="#cb39-3"></a>  <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.75</span>)) <span class="sc">&amp;</span></span>
+<span id="cb39-4" class="hljs-ln-code"><a href="#cb39-4"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-34-1.png" width="768" class="r-stretch"></section>
+<section id="format-panel-labels" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Format panel labels</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb40-1" class="hljs-ln-code"><a href="#cb40-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb40-2" class="hljs-ln-code"><a href="#cb40-2"></a>panel_E <span class="sc">+</span> panel_F <span class="sc">+</span> panel_K <span class="sc">+</span></span>
+<span id="cb40-3" class="hljs-ln-code"><a href="#cb40-3"></a>  <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.75</span>)) <span class="sc">&amp;</span></span>
+<span id="cb40-4" class="hljs-ln-code"><a href="#cb40-4"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"K"</span>))) <span class="sc">&amp;</span></span>
+<span id="cb40-5" class="hljs-ln-code"><a href="#cb40-5"></a>  <span class="fu">theme</span>(<span class="at">plot.tag =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-35-1.png" width="768" class="r-stretch"></section>
+<section class="slide level2">
+
+<p><img data-src="images/Sulis_fig3.png"></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="2023_ggplot2_slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
+</div>
+</div>
+</section></section>
+<section>
 <section id="saving-plots" class="title-slide slide level1 center">
 <h1>4. Saving plots</h1>
-<ul>
-<li>pdf()</li>
-</ul>
-</section>
 
+</section>
+<section id="save-to-pdf" class="slide level2">
+<h2>Save to pdf</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb41-2"><a href="#cb41-2"></a>  <span class="st">"images/fig3.pdf"</span>,</span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="at">width =</span> <span class="dv">180</span>,</span>
+<span id="cb41-4"><a href="#cb41-4"></a>  <span class="at">height =</span> <span class="dv">60</span>,</span>
+<span id="cb41-5"><a href="#cb41-5"></a>  <span class="at">units =</span> <span class="st">"mm"</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>PDFs don’t lose resolution and are easily edited in Inkscape/Photoshop</p>
+</section>
+<section id="save-to-png" class="slide level2">
+<h2>Save to png</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">library</span>(ragg)</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">ggsave</span>(</span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="st">"images/fig3.png"</span>,</span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="at">width =</span> <span class="dv">180</span>,</span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="at">height =</span> <span class="dv">60</span>,</span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="at">units =</span> <span class="st">"mm"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="at">device =</span> agg_png</span>
+<span id="cb42-8"><a href="#cb42-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>ragg</code> and its devices (<code>agg_tiff</code>, <code>agg_jpeg</code>, <code>agg_png</code>) improve raster graphics text rendering</p>
+</section>
+<section class="slide level2">
+
+<p><img data-src="images/Sulis_fig3.png"></p>
+<p><img data-src="images/fig3.png"></p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="exercises" class="title-slide slide level1 center">
+<h1>Exercises!</h1>
+<p>Open up <code>2023_ggplot2_exercises.rmd</code> and give it a try</p>
+</section>
+<section id="some-pointers" class="slide level2">
+<h2>Some pointers</h2>
+<ul>
+<li>Overview of <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html">aesthetic mappings</a></li>
+<li>Change typefaces in <a href="https://www.tidyverse.org/blog/2021/02/modern-text-features/">raster</a> and <a href="https://cran.r-project.org/web/packages/showtext/vignettes/introduction.html">vector</a> graphics</li>
+<li>Ridgeline plots with <a href="https://wilkelab.org/ggridges/articles/introduction.html"><code>ggridges</code></a></li>
+<li>Annotation shenanigans with <a href="https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/"><code>ggforce</code></a></li>
+<li>Animated plots with <a href="https://gganimate.com"><code>gganimate</code></a></li>
+<li>“Publication ready” plots with <a href="https://rpkgs.datanovia.com/ggpubr/"><code>ggpubr</code></a></li>
+</ul>
+</section></section>
 <section id="resources-to-go-further" class="title-slide slide level1 center">
 <h1>Resources to go further</h1>
 <ul>
 <li>R for Data Science, Hadley Wickham (2023) – <a href="https://r4ds.hadley.nz" class="uri">https://r4ds.hadley.nz</a></li>
 <li>Fundamentals of Data Visualization, Claus O. Wilke (2019) – <a href="https://clauswilke.com/dataviz/" class="uri">https://clauswilke.com/dataviz/</a></li>
-<li><em>I just need to know how to flip axis labels, quickly!</em> – <a href="https://perplexity.ai" class="uri">https://perplexity.ai</a></li>
-</ul>
-</section>
-
-<section id="course-supplement" class="title-slide slide level1 center">
-<h1>Course Supplement</h1>
-<ul>
-<li>importing folders of textfiles with map_dfr()</li>
-<li>mutate()</li>
-<li>summarise()</li>
-<li>geom_bar()</li>
-<li>geom_violin()</li>
-<li>position_dodge()</li>
-<li>coord_polar(theta)</li>
-<li>facets with facet labels as axis titles</li>
-</ul>
-</section>
-
-<section id="more-useful-extensions" class="title-slide slide level1 center">
-<h1>More useful extensions:</h1>
-<ul>
-<li>ggtext</li>
-<li>ggridges</li>
-<li>ggrepel</li>
-<li>ggtext</li>
-<li>ggforce</li>
-<li>gganimate</li>
-<li>ggraph</li>
-<li>ggpubr(/tukeygrps?)</li>
-<li>showtext/systemfonts</li>
+<li><span class="highlight"><em>I just need to know how to flip axis labels, quickly!</em> – <a href="https://perplexity.ai" class="uri">https://perplexity.ai</a></span></li>
 </ul>
 
 <img src="images/KU.png" class="slide-logo r-stretch"><div class="footer footer-default">

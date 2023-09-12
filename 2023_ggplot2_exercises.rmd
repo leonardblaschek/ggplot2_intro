@@ -1,0 +1,89 @@
+---
+title: "ggplot2 exercises"
+author: "Leonard Blaschek"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# in this "setup chunk" you can load packages:
+library(tidyverse)
+
+# you can also create a custom theme_*():
+theme_sulis <- function(base_size = 8) {
+  theme_minimal(
+    base_size = base_size
+  ) %+replace%
+    theme(
+      axis.ticks = element_blank(),
+      axis.text.x = element_text(
+        size = 8,
+        colour = "black",
+        margin = margin(1, 1, 1, 1)
+      ),
+      axis.text.y = element_text(
+        colour = "black",
+        size = 8,
+        angle = 0,
+        vjust = 0.5,
+        hjust = 1,
+        margin = margin(1, 1, 1, 1)
+      ),
+      axis.title = element_text(
+        colour = "black",
+        size = 8
+      ),
+      axis.line = element_line(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      legend.text = element_text(size = 8),
+      legend.key.height = unit(4, "mm"),
+      complete = TRUE
+    )
+}
+
+# and define variables you might need:
+ggtext_size <- 8 / (14 / 5)
+```
+
+## 1. Density curves
+
+Task: Create density curves (`geom_density()`) for the relative lignin content (`rel_lignin`).
+The fill of the curve should correspond to their `type` (mutant or WT) and be semi-transparent (`alpha = 0.5`). 
+Lastly, get rid of the hideous grey background by applying our custom `theme_sulis()`.
+
+Data file: `"data/Sulis2023_fig3G.tsv"`
+
+```{r}
+# write your code in this code chunk; execute all code within the chunk your cursor is in with ctrl+shift+enter
+data <- read_tsv("data/Sulis2023_fig3G.tsv")
+
+ggplot(data = data,
+       aes(
+         x = rel_lignin,
+         fill = type)) +
+  geom_density(alpha = 0.5) +
+  theme_sulis()
+```
+
+## 2. Violin and boxplots
+
+Task: Plot the distribution of predicted carbohydrate/lignin ratios (`rel_CL`) as a boxplots (`geom_boxplot()`) on top of violin plots (`geom_violin()`), grouped by the number mutated genes (`target_genes`).
+Reduce the width of the boxplots to fit within the violin plots (check `?geom_boxplot()` for the right argument).
+Fill the violin plots according to the number of mutated genes, using the continuous viridis colour scale (`scale_colour_viridis_c()`).
+
+Data: `"data/Sulis2023_predictions.tsv"`
+
+Hint: If you want to use a continuous variable as a grouping factor, you might have to wrap it inside `as.factor()`.
+
+```{r}
+data <- read_tsv("data/Sulis2023_predictions.tsv")
+ggplot(data = data,
+       aes(x = as.factor(target_genes),
+           y = rel_CL)) +
+  geom_violin(aes(fill = target_genes)) +
+  geom_boxplot(width = 0.05) +
+  scale_fill_viridis_c() +
+  theme_sulis()
+```
+
+
