@@ -10,6 +10,7 @@ format:
     css: theme/styles.css
     fig-width: 5
     fig-height: 4
+    embed-resources: true
 ---
 
 ```{r}
