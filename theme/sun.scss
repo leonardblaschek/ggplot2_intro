@@ -1,12 +1,10 @@
 /*-- scss:defaults --*/
 
-// @import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-// @import url(https://fonts.googleapis.com/css2?family=Lato:400,700,400italic,700italic);
-// @import url(https://fonts.googleapis.com/css2?family=Inconsolata:400,600);
+@import url(https://fonts.googleapis.com/css2?family=Crimson+Text&family=Jost&family=Inconsolata:wght@300;400;600;700&display=swap);
 
 // fonts
-$font-family-sans-serif: "Futura Std", sans-serif !default;
-$font-family-monospace: "Inconsolata", monospace, !default;
+$font-family-sans-serif: "Futura Std", "Jost", sans-serif !default;
+$font-family-monospace: "Inconsolata", monospace !default;
 
 // colors
 $body-bg: #fff !default;
@@ -15,5 +13,5 @@ $link-color: #00008b !default;
 $selection-bg: #e8c245 !default;
 $selection-color: #000 !default;
 
-// headings
-$presentation-heading-font: "Mrs Eaves OT", serif !default;
+// heading font
+$presentation-heading-font: "Mrs Eaves OT", "Crimson Text", serif !default;

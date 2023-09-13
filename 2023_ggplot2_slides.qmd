@@ -1469,13 +1469,11 @@ ggsave(
 
 ![](images/fig3.png)
 
----
-
 # Exercises!
 
 Open up `2023_ggplot2_exercises.rmd` and give it a try
 
-## Some pointers
+# Resources to go further
 
 * Overview of [aesthetic mappings](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
 * Change typefaces in [raster](https://www.tidyverse.org/blog/2021/02/modern-text-features/) and [vector](https://cran.r-project.org/web/packages/showtext/vignettes/introduction.html) graphics
