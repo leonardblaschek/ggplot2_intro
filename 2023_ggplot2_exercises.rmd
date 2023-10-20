@@ -16,13 +16,13 @@ theme_sulis <- function(base_size = 8) {
     theme(
       axis.ticks = element_blank(),
       axis.text.x = element_text(
-        size = 8,
+        size = base_size,
         colour = "black",
         margin = margin(1, 1, 1, 1)
       ),
       axis.text.y = element_text(
         colour = "black",
-        size = 8,
+        size = base_size,
         angle = 0,
         vjust = 0.5,
         hjust = 1,
@@ -30,12 +30,12 @@ theme_sulis <- function(base_size = 8) {
       ),
       axis.title = element_text(
         colour = "black",
-        size = 8
+        size = base_size
       ),
       axis.line = element_line(),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.text = element_text(size = 8),
+      legend.text = element_text(size = base_size),
       legend.key.height = unit(4, "mm"),
       complete = TRUE
     )
@@ -47,43 +47,68 @@ ggtext_size <- 8 / (14 / 5)
 
 ## 1. Density curves
 
-Task: Create density curves (`geom_density()`) for the relative lignin content (`rel_lignin`).
+#### Task: 
+Create density curves (`geom_density()`) for the relative lignin content (`rel_lignin`).
 The fill of the curve should correspond to their `type` (mutant or WT) and be semi-transparent (`alpha = 0.5`). 
-Lastly, get rid of the hideous grey background by applying our custom `theme_sulis()`.
+Lastly, get rid of the hideous grey background by applying our custom `theme_sulis()`. 
 
-Data file: `"data/Sulis2023_fig3G.tsv"`
+#### Bonus: 
+Check the arguments of `coord_cartesian()` to figure out how to remove the scale expansion (*i.e.* the little gap between 0 and the axis line).
+
+#### Data: 
+`"data/Sulis2023_fig3G.tsv"`
+
+#### Hint:
+R looks for specified files (such as `"data/Sulis2023_fig3G.tsv"`) relative to its so-called `working directory`. 
+To make sure it finds the data file, set the folder containing the seminar files as your working directory by clicking on `Session` and `Set working directory to source file location`. 
 
 ```{r}
 # write your code in this code chunk; execute all code within the chunk your cursor is in with ctrl+shift+enter
-data <- read_tsv("data/Sulis2023_fig3G.tsv")
 
-ggplot(data = data,
-       aes(
-         x = rel_lignin,
-         fill = type)) +
-  geom_density(alpha = 0.5) +
-  theme_sulis()
 ```
 
 ## 2. Violin and boxplots
 
-Task: Plot the distribution of predicted carbohydrate/lignin ratios (`rel_CL`) as a boxplots (`geom_boxplot()`) on top of violin plots (`geom_violin()`), grouped by the number mutated genes (`target_genes`).
+#### Task: 
+Plot the distribution of predicted carbohydrate/lignin ratios (`rel_CL`) as boxplots (`geom_boxplot()`) on top of violin plots (`geom_violin()`), grouped by the number mutated genes (`target_genes`).
 Reduce the width of the boxplots to fit within the violin plots (check `?geom_boxplot()` for the right argument).
-Fill the violin plots according to the number of mutated genes, using the continuous viridis colour scale (`scale_colour_viridis_c()`).
+Fill the violin plots according to the number of mutated genes, using the continuous viridis colour scale (`scale_colour_viridis_c()`), which is designed to be interpretable by viewers with common forms of colour blindness.
 
-Data: `"data/Sulis2023_predictions.tsv"`
+#### Data: 
+`"data/Sulis2023_predictions.tsv"`
 
-Hint: If you want to use a continuous variable as a grouping factor, you might have to wrap it inside `as.factor()`.
+#### Hint: 
+If you want to use a continuous variable as a grouping factor on a discrete x-axis, you might have to wrap it inside `as.factor()`.
 
 ```{r}
-data <- read_tsv("data/Sulis2023_predictions.tsv")
-ggplot(data = data,
-       aes(x = as.factor(target_genes),
-           y = rel_CL)) +
-  geom_violin(aes(fill = target_genes)) +
-  geom_boxplot(width = 0.05) +
-  scale_fill_viridis_c() +
-  theme_sulis()
+
 ```
 
+# 3. 2D density and facets
+
+#### Task: 
+Using the data of mutant predictions, plot the relative stem volume (`rel_volume`) against relative lignin content (`rel_lignin`).
+You can start by trying `geom_point()`, but you'll see that the enormous number of points creates a black mass that is difficult to interpret.
+Instead, try `geom_density2d_filled()` to get a 2D density map of the predictions.
+
+This looks OK, but what if you want to compare those densities relative to the number of targeted genes?
+`facet_wrap()` lets you split your figure into smaller facets, each representing a subgroup of the data.
+Use `facet_wrap()` to split your plot by `target_genes`.
+Lastly, add white dashed lines at 100% of x and y axes for orientation (check `?geom_abline()`).
+
+#### Bonus:
+Seven facets look a bit inelegant, and the `0` facet (*i.e.* WT) is useless anyways.
+Going a bit beyond the scope of this workshop, replace your data argument with
+`data = data |> filter(target_genes > 0)` to remove the `0` facet (assuming you named your data frame `data`).
+
+#### Data: 
+`"data/Sulis2023_predictions.tsv"`
+
+#### Hint: 
+The unequal number of data points in the different facets makes the densities in facets with fewer target genes invisible.
+To calculate the bins independently in each facet, set the `geom_density2d_filled()` option `contour_var` to `"ndensity"`.
+
+```{r}
+
+```
 

@@ -21,13 +21,13 @@ theme_sulis <- function(base_size = 8) {
     theme(
       axis.ticks = element_blank(),
       axis.text.x = element_text(
-        size = 8,
+        size = base_size,
         colour = "black",
         margin = margin(1, 1, 1, 1)
       ),
       axis.text.y = element_text(
         colour = "black",
-        size = 8,
+        size = base_size,
         angle = 0,
         vjust = 0.5,
         hjust = 1,
@@ -35,12 +35,12 @@ theme_sulis <- function(base_size = 8) {
       ),
       axis.title = element_text(
         colour = "black",
-        size = 8
+        size = base_size
       ),
       axis.line = element_line(),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.text = element_text(size = 8),
+      legend.text = element_text(size = base_size),
       legend.key.height = unit(4, "mm"),
       complete = TRUE
     )
@@ -88,7 +88,7 @@ A universal framework that allows creating and combining without limits.
 [Scales]{.absolute top=500 left=200}
 [Theme]{.absolute top=650 left=200}
 
-::: {.fragment style="color: grey"}
+:::{.fragment style="color: grey"}
 [Data]{.absolute top=125 left=200}
 [Mapping]{.absolute top=275 left=200}
 [Statistics]{.absolute top=425 left=200}
@@ -138,6 +138,26 @@ ggplot              # object
 library(tidyverse)  # use library() to load the tidyverse package
 ```
 
+# R fundamentals {auto-animate=true}
+
+```{.r}
+?read_tsv()
+```
+
+:::{.fragment}
+![](images/read_tsv_help.png)
+:::
+
+# R fundamentals {auto-animate=true}
+
+```{.r}
+?readr # navigate to package index and then vignettes
+```
+
+:::{.fragment}
+![](images/readr_vignette.png)
+:::
+
 
 # 1. Data import {auto-animate=true}
 
@@ -161,15 +181,22 @@ sulis_bar_data <- read_tsv()
 
 # 1. Data import {auto-animate=true}
 
+::::{.columns}
+:::{.column}
 ```{.r}
 ?read_tsv()
 ```
 
-::: {.fragment}
-![](images/read_tsv_help.png)
+![](images/read_tsv_help2.png)
 :::
 
+:::{.column}
+<br>
+<br>
 [Arguments without default need to be supplied]{.fragment}
+:::
+
+::::
 
 # 1. Data import {auto-animate=true}
 
@@ -180,7 +207,7 @@ sulis_bar_data <- read_tsv(file = "data/Sulis2023_fig3EF.tsv")
 ```
 
 :::{.fragment}
-Assign the function output of `read_tsv("data/Sulis2023_fig3EF.tsv")` <br>to the object <br>`sulis_bar_data`.
+Assign the function output of `read_tsv()` <br>to the object <br>`sulis_bar_data`.
 :::
 
 # 1. Data import {auto-animate=true}
@@ -197,8 +224,8 @@ sulis_bar_data
 
 ::::{.columns}
 
-::: {.column width="15%"}
-::: {style="font-size: 0.5em"}
+:::{.column width="15%"}
+:::{style="font-size: 0.5em"}
 [Data]{style="color:grey"}
 
 [Coordinates]{style="color:grey"}
@@ -217,13 +244,13 @@ sulis_bar_data
 :::
 :::
 
-::: {.column width="45%"}
+:::{.column width="45%"}
 ```{.r}
 bar_plot <- ggplot()
 ```
 :::
 
-::: {.colum width="40%"}
+:::{.colum width="40%"}
 :::
 ::::
 
@@ -231,8 +258,8 @@ bar_plot <- ggplot()
 
 ::::{.columns}
 
-::: {.column width="15%"}
-::: {style="font-size: 0.5em"}
+:::{.column width="15%"}
+:::{style="font-size: 0.5em"}
 [Data]{.highlight}
 
 [Coordinates]{style="color:grey"}
@@ -251,7 +278,7 @@ bar_plot <- ggplot()
 :::
 :::
 
-::: {.column width="42.5%"}
+:::{.column width="42.5%"}
 ```{.r code-line-numbers="2"}
 panel_E <- ggplot(
   data = sulis_bar_data
@@ -259,7 +286,7 @@ panel_E <- ggplot(
 ```
 :::
 
-::: {.colum width="42.5%"}
+:::{.colum width="42.5%"}
 :::
 ::::
 
@@ -267,8 +294,8 @@ panel_E <- ggplot(
 
 ::::{.columns}
 
-::: {.column width="15%"}
-::: {style="font-size: 0.5em"}
+:::{.column width="15%"}
+:::{style="font-size: 0.5em"}
 [Data]{.highlight}
 
 [Coordinates]{style="color:grey"}
@@ -287,7 +314,7 @@ panel_E <- ggplot(
 :::
 :::
 
-::: {.column width="42.5%"}
+:::{.column width="42.5%"}
 ```{.r code-line-numbers="3-6"}
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -299,7 +326,7 @@ panel_E <- ggplot(
 ```
 :::
 
-::: {.colum width="42.5%"}
+:::{.colum width="42.5%"}
 :::
 ::::
 
@@ -307,8 +334,8 @@ panel_E <- ggplot(
 
 ::::{.columns}
 
-::: {.column width="15%"}
-::: {style="font-size: 0.5em"}
+:::{.column width="15%"}
+:::{style="font-size: 0.5em"}
 [Data]{.highlight}
 
 [Coordinates]{style="color:grey"}
@@ -327,7 +354,7 @@ panel_E <- ggplot(
 :::
 :::
 
-::: {.column width="85%"}
+:::{.column width="85%"}
 ```{r}
 #| echo: true
 #| code-line-numbers: "7-11|13"
@@ -350,16 +377,63 @@ panel_E
 
 ::::
 
+# 2. Building a plot {auto-animate=true}
+
+::::{.columns}
+
+:::{.column width="15%"}
+:::{style="font-size: 0.5em"}
+[Data]{.highlight}
+
+[Coordinates]{style="color:grey"}
+
+[Mapping]{.highlight}
+
+[Geometries]{.highlight}
+
+[Statistics]{style="color:grey"}
+
+[Scales]{style="color:grey"}
+
+[Facets]{style="color:grey"}
+
+[Theme]{style="color:grey"}
+:::
+:::
+
+:::{.column width="85%"}
+```{r}
+#| echo: true
+#| output-location: column-fragment
+panel_E <- ggplot() +
+  geom_bar(
+    data = sulis_bar_data,
+    aes(
+      x = line,
+      y = lignin
+    ),
+    stat = "summary",
+    fun.y = "mean"
+  )
+
+panel_E
+```
+
+`data` and `aes()` can be specified for in `ggplot()` and [inherited]{.highlight}, or specified in each layer.
+:::
+
+::::
+
 ---
 
 ::::{.columns}
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 ![](images/Sulis_fig3E.png)
 [Figure from the paper.]{.absolute bottom=100 left=0}
 :::
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 ```{r}
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -381,10 +455,19 @@ panel_E
 
 ::::
 
-::: {.fragment}
+:::{.fragment}
 [[Which differences can you spot?]{.highlight}]{.absolute bottom=0 left=0}
 ::: 
 
+:::{.notes}
+- reorder x-axis
+- errorbars
+- cut y-axis
+- fill by severity
+- fix axis titles
+- rotate axis labels
+- fix theme
+:::
 ## Mapping — Reorder x-axis {auto-animate=true}
 
 ```{r}
@@ -528,7 +611,7 @@ panel_E <- ggplot(
 panel_E
 ```
 
-::: {.fragment}
+:::{.fragment}
 [Let's not do that.]{.highlight}
 :::
 
@@ -536,7 +619,7 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "12-14|16|19"
+#| code-line-numbers: "12-14|16,19"
 #| output-location: column-fragment
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -624,7 +707,7 @@ panel_E <- ggplot(
     palette = "Greys"
   ) +
   geom_bar(
-    aes(fill = ..y..),
+    aes(fill = after_stat(y)),
     stat = "summary",
     fun = "mean",
     colour = "black"
@@ -730,7 +813,7 @@ panel_E <- ggplot(
 panel_E
 ```
 
-## Theme — The last details {auto-animate=true}
+## The last details {auto-animate=true}
 
 ```{r}
 #| echo: true
@@ -794,12 +877,12 @@ Applying a `theme_*()` can completely change the look — see how to make your o
 
 ::::{.columns}
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 ![](images/Sulis_fig3E.png)
 [Figure from the paper.]{.absolute bottom=120 left=0}
 :::
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 ```{r}
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -861,6 +944,19 @@ panel_E
 
 ## Next panel — same code with a few adjustments {auto-animate=true}
 
+![](images/Sulis_fig3EF.png)
+
+Which layers and functions need changing?
+
+:::{.notes}
+- object name
+- y mapping
+- y axis title
+- colour scale direction
+:::
+
+## Next panel — same code with a few adjustments {auto-animate=true}
+
 ```{r}
 #| echo: true
 #| code-line-numbers: "1|9|14|31"
@@ -916,12 +1012,7 @@ panel_F <- ggplot(
 panel_F
 ```
 
----
-
-**Multiplex CRISPR editing of wood for sustainable fiber production.**
-Sulis DB, [...], Barrangou R, Wang JP. 2023. *Science* 381:216–221. [10.1126/science.add4514](https://doi.org/10.1126/science.add4514)
-
-<br>
+# Scatter plots
 
 ![Three panels from main figure 3.](images/Sulis_fig3.png)
 
@@ -1004,7 +1095,7 @@ panel_K
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "11|13-15"
+#| code-line-numbers: "11-13|15"
 #| output-location: column-fragment
 panel_K <- ggplot(
   data = sulis_scatter_data,
@@ -1105,12 +1196,12 @@ panel_K
 
 ::::{.columns}
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 ![](images/Sulis_fig3K.png)
 [Figure from the paper.]{.absolute bottom=120 left=0}
 :::
 
-::: {.column width="50%"}
+:::{.column width="50%"}
 
 ```{r}
 #| fig-height: 3
@@ -1155,6 +1246,15 @@ panel_K
 
 :::
 ::::
+
+---
+
+<br>
+<br>
+
+![](images/Sulis_fig3.png)
+
+Where do the lines shown in **E** and **F** fall in **K**?
 
 ## Bonus: label interesting points
 
@@ -1468,6 +1568,13 @@ ggsave(
 ![](images/Sulis_fig3.png)
 
 ![](images/fig3.png)
+
+# When you're stuck
+
+1. Know which package/function you need? — Help pages and vignettes!
+2. Know what you want to do but not where to start? — Try an LLM, *e.g.* `perplexity.ai`
+3. Looking for inspiration of what's possible? — Scroll through #TidyTuesday on social media
+4. *I feel like I've done this before ...* — Keep your old scripts [organised]{.highlight} and [annotated]{.highlight}, chances are you'll need that little hack you came up with again in a month or two.
 
 # Exercises!
 
