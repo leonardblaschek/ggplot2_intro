@@ -64,7 +64,6 @@ To make sure it finds the data file, set the folder containing the seminar files
 
 ```{r}
 # write your code in this code chunk; execute all code within the chunk your cursor is in with ctrl+shift+enter
-
 ```
 
 ## 2. Violin and boxplots
@@ -81,7 +80,6 @@ Fill the violin plots according to the number of mutated genes, using the contin
 If you want to use a continuous variable as a grouping factor on a discrete x-axis, you might have to wrap it inside `as.factor()`.
 
 ```{r}
-
 ```
 
 # 3. 2D density and facets
@@ -109,6 +107,4 @@ The unequal number of data points in the different facets makes the densities in
 To calculate the bins independently in each facet, set the `geom_density2d_filled()` option `contour_var` to `"ndensity"`.
 
 ```{r}
-
 ```
-

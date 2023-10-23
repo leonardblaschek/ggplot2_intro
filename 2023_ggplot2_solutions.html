@@ -385,10 +385,13 @@ data &lt;- read_tsv(&quot;data/Sulis2023_fig3G.tsv&quot;)</code></pre>
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>ggplot(data = data,
-       aes(
-         x = rel_lignin,
-         fill = type)) +
+<pre class="r"><code>ggplot(
+  data = data,
+  aes(
+    x = rel_lignin,
+    fill = type
+  )
+) +
   geom_density(alpha = 0.5) +
   coord_cartesian(expand = FALSE) +
   theme_sulis()</code></pre>
@@ -429,9 +432,13 @@ discrete x-axis, you might have to wrap it inside
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>ggplot(data = data,
-       aes(x = as.factor(target_genes),
-           y = rel_CL)) +
+<pre class="r"><code>ggplot(
+  data = data,
+  aes(
+    x = as.factor(target_genes),
+    y = rel_CL
+  )
+) +
   geom_violin(aes(fill = target_genes)) +
   geom_boxplot(width = 0.05) +
   scale_fill_viridis_c() +
@@ -487,10 +494,13 @@ bins independently in each facet, set the
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>ggplot(data = data |&gt; filter(target_genes &gt; 0),
-       aes(x = rel_lignin,
-           y = rel_volume)) +
-  # geom_hex(bins = 5) +
+<pre class="r"><code>ggplot(
+  data = data |&gt; filter(target_genes &gt; 0),
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
   geom_density2d_filled(contour_var = &quot;ndensity&quot;) +
   geom_hline(yintercept = 100, colour = &quot;white&quot;, linetype = &quot;dashed&quot;) +
   geom_vline(xintercept = 100, colour = &quot;white&quot;, linetype = &quot;dashed&quot;) +

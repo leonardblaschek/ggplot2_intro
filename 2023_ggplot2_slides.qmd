@@ -207,7 +207,7 @@ sulis_bar_data <- read_tsv(file = "data/Sulis2023_fig3EF.tsv")
 ```
 
 :::{.fragment}
-Assign the function output of `read_tsv()` <br>to the object <br>`sulis_bar_data`.
+Assign the function output of `read_tsv()` <br>to the object `sulis_bar_data`.
 :::
 
 # 1. Data import {auto-animate=true}
@@ -1109,7 +1109,7 @@ panel_K <- ggplot(
       colour = type,
       fill = after_scale(
         alpha(colour, 0.4)
-        )
+      )
     ),
     shape = "circle filled"
   ) +
@@ -1571,10 +1571,12 @@ ggsave(
 
 # When you're stuck
 
+:::{.incremental}
 1. Know which package/function you need? — Help pages and vignettes!
-2. Know what you want to do but not where to start? — Try an LLM, *e.g.* `perplexity.ai`
-3. Looking for inspiration of what's possible? — Scroll through #TidyTuesday on social media
+2. Know what you want to do but not where to start? — Try an LLM, *e.g.* [perplexity.ai](https://perplexity.ai)
+3. Looking for inspiration of what's possible? — Scroll through [#TidyTuesday](https://vis.social/tags/tidytuesday) on social media
 4. *I feel like I've done this before ...* — Keep your old scripts [organised]{.highlight} and [annotated]{.highlight}, chances are you'll need that little hack you came up with again in a month or two.
+:::
 
 # Exercises!
 

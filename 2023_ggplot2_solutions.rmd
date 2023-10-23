@@ -62,10 +62,13 @@ Check the arguments of `coord_cartesian()` to figure out how to remove the scale
 # write your code in this code chunk; execute all code within the chunk your cursor is in with ctrl+shift+enter
 data <- read_tsv("data/Sulis2023_fig3G.tsv")
 
-ggplot(data = data,
-       aes(
-         x = rel_lignin,
-         fill = type)) +
+ggplot(
+  data = data,
+  aes(
+    x = rel_lignin,
+    fill = type
+  )
+) +
   geom_density(alpha = 0.5) +
   coord_cartesian(expand = FALSE) +
   theme_sulis()
@@ -86,9 +89,13 @@ If you want to use a continuous variable as a grouping factor on a discrete x-ax
 
 ```{r}
 data <- read_tsv("data/Sulis2023_predictions.tsv")
-ggplot(data = data,
-       aes(x = as.factor(target_genes),
-           y = rel_CL)) +
+ggplot(
+  data = data,
+  aes(
+    x = as.factor(target_genes),
+    y = rel_CL
+  )
+) +
   geom_violin(aes(fill = target_genes)) +
   geom_boxplot(width = 0.05) +
   scale_fill_viridis_c() +
@@ -121,14 +128,16 @@ To calculate the bins independently in each facet, set the `geom_density2d_fille
 
 ```{r}
 data <- read_tsv("data/Sulis2023_predictions.tsv")
-ggplot(data = data |> filter(target_genes > 0),
-       aes(x = rel_lignin,
-           y = rel_volume)) +
-  # geom_hex(bins = 5) +
+ggplot(
+  data = data |> filter(target_genes > 0),
+  aes(
+    x = rel_lignin,
+    y = rel_volume
+  )
+) +
   geom_density2d_filled(contour_var = "ndensity") +
   geom_hline(yintercept = 100, colour = "white", linetype = "dashed") +
   geom_vline(xintercept = 100, colour = "white", linetype = "dashed") +
   theme_sulis() +
   facet_wrap(~target_genes)
 ```
-
