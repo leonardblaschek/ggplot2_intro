@@ -11,6 +11,18 @@ format:
     fig-width: 5
     fig-height: 4
     embed-resources: true
+    resources:
+      - fonts/MrsEavesOT-Roman.woff2
+      - fonts/MrsEavesOT-Italic.woff2
+      - fonts/MrsEavesOT-Bold.woff2
+      - fonts/FuturaStd-MediumOblique.woff2
+      - fonts/FuturaStd-Medium.woff2
+      - fonts/FuturaStd-BoldOblique.woff2
+      - fonts/FuturaStd-Bold.woff2
+      - fonts/IosevkaTerm-BoldItalic.woff2
+      - fonts/IosevkaTerm-Bold.woff2
+      - fonts/IosevkaTerm-Italic.woff2
+      - fonts/IosevkaTerm-Regular.woff2
 ---
 
 ```{r}
@@ -468,18 +480,40 @@ panel_E
 - rotate axis labels
 - fix theme
 :::
+
 ## Mapping — Reorder x-axis {auto-animate=true}
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "4-8"
-#| output-location: column-fragment
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = line,
+    y = lignin
+  )
+) +
+  geom_bar(
+    stat = "summary",
+    fun.y = "mean"
+  )
+
+panel_E
+```
+
+## Mapping — Reorder x-axis {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "4-9"
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -497,14 +531,40 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "16-19"
-#| output-location: column-fragment
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  geom_bar(
+    stat = "summary",
+    fun.y = "mean"
+  )
+
+panel_E
+```
+
+## Geometries — Errorbars {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "17-20"
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -526,14 +586,15 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "12-20"
-#| output-location: column-fragment
+#| code-line-numbers: "13-21"
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -558,14 +619,15 @@ Layers are drawn in order, so [before = below]{.highlight}
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "16"
-#| output-location: column-fragment
+#| code-line-numbers: "17"
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -584,8 +646,34 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "18-21"
-#| output-location: column-fragment
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean"
+  ) +
+  geom_jitter(width = 0.1)
+
+panel_E
+```
+
+## Coordinates — Cut y-axis {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "19-22"
+#| output-location: column
 library(ggtext)
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -593,6 +681,7 @@ panel_E <- ggplot(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -619,14 +708,41 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "12-14|16,19"
-#| output-location: column-fragment
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  geom_bar(
+    stat = "summary",
+    fun = "mean"
+  ) +
+  geom_jitter(width = 0.1)
+
+panel_E
+```
+
+## Scales — Fill by severity {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "13-15|17,20"
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -654,14 +770,15 @@ That didn't work because the bar height is [calculated within the function]{.hig
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "16"
-#| output-location: column-fragment
+#| code-line-numbers: "17"
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -689,8 +806,39 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "1|23-29"
-#| output-location: column-fragment
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  scale_fill_distiller(
+    palette = "Greys"
+  ) +
+  geom_bar(
+    aes(fill = after_stat(y)),
+    stat = "summary",
+    fun = "mean",
+    colour = "black"
+  ) +
+  geom_jitter(width = 0.1)
+
+panel_E
+```
+
+## Theme — Fix axis titles {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1|24-30"
+#| output-location: column
 library(ggtext)
 panel_E <- ggplot(
   data = sulis_bar_data,
@@ -698,6 +846,7 @@ panel_E <- ggplot(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -730,14 +879,54 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "28-32"
-#| output-location: column-fragment
+#| output-location: column
+library(ggtext)
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  scale_fill_distiller(
+    palette = "Greys"
+  ) +
+  geom_bar(
+    aes(fill = after_stat(y)),
+    stat = "summary",
+    fun = "mean",
+    colour = "black"
+  ) +
+  geom_jitter(width = 0.1) +
+  labs(
+    x = NULL,
+    y = "<b>Lignin content</b> (% wt)"
+  ) +
+  theme(
+    axis.title.y = element_markdown()
+  )
+
+panel_E
+```
+
+## Theme — Rotate axis labels {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "29-34"
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -773,14 +962,58 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "33"
-#| output-location: column-fragment
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  scale_fill_distiller(
+    palette = "Greys"
+  ) +
+  geom_bar(
+    aes(fill = ..y..),
+    stat = "summary",
+    fun = "mean",
+    colour = "black"
+  ) +
+  geom_jitter(width = 0.1) +
+  labs(
+    x = NULL,
+    y = "<b>Lignin content</b> (% wt)"
+  ) +
+  theme(
+    axis.title.y = element_markdown(),
+    axis.text.x = element_text(
+      angle = 90,
+      vjust = 0.5,
+      hjust = 1
+    )
+  )
+
+panel_E
+```
+
+## Theme — Remove legend {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "34"
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -817,14 +1050,59 @@ panel_E
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "22-27|32-36|37"
-#| output-location: column-fragment
+#| output-location: column
 panel_E <- ggplot(
   data = sulis_bar_data,
   aes(
     x = fct_reorder(
       line,
       lignin,
+      mean,
+      .desc = TRUE
+    ),
+    y = lignin
+  )
+) +
+  scale_fill_distiller(
+    palette = "Greys"
+  ) +
+  geom_bar(
+    aes(fill = ..y..),
+    stat = "summary",
+    fun = "mean",
+    colour = "black"
+  ) +
+  geom_jitter(width = 0.1) +
+  labs(
+    x = NULL,
+    y = "<b>Lignin content</b> (% wt)"
+  ) +
+  theme(
+    axis.title.y = element_markdown(),
+    axis.text.x = element_text(
+      angle = 90,
+      vjust = 0.5,
+      hjust = 1
+    ),
+    legend.position = "none"
+  )
+
+panel_E
+```
+
+## The last details {auto-animate=true}
+
+```{r}
+#| echo: true
+#| code-line-numbers: "23-28|33-37|38"
+#| output-location: column
+panel_E <- ggplot(
+  data = sulis_bar_data,
+  aes(
+    x = fct_reorder(
+      line,
+      lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -890,6 +1168,7 @@ panel_E <- ggplot(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = lignin
@@ -967,6 +1246,7 @@ panel_F <- ggplot(
     x = fct_reorder(
       line,
       lignin,
+      mean,
       .desc = TRUE
     ),
     y = CL
@@ -1476,6 +1756,26 @@ panel_E + panel_F + panel_K
 
 [`patchwork` automatically aligns plots into multi-panel figures]{.fragment}
 
+## Fix axis label alignment {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + panel_K
+```
+
+## Fix axis label alignment {auto-animate=true}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 8
+library(patchwork)
+panel_E + panel_F + free(panel_K, type = "label")
+```
+
 ## Adjust relative widths {auto-animate=true}
 
 ```{r}
@@ -1483,7 +1783,7 @@ panel_E + panel_F + panel_K
 #| fig-height: 3
 #| fig-width: 8
 library(patchwork)
-panel_E + panel_F + panel_K +
+panel_E + panel_F + free(panel_K, type = "label") +
   plot_layout(widths = c(1, 1, 1.75))
 ```
 
@@ -1494,12 +1794,10 @@ panel_E + panel_F + panel_K +
 #| fig-height: 3
 #| fig-width: 8
 library(patchwork)
-panel_E + panel_F + panel_K +
+panel_E + panel_F + free(panel_K, type = "label") +
   plot_layout(widths = c(1, 1, 1.75)) &
   plot_annotation(tag_levels = "A")
 ```
-
-
 
 ## Format panel labels {auto-animate=true}
 
@@ -1508,7 +1806,7 @@ panel_E + panel_F + panel_K +
 #| fig-height: 3
 #| fig-width: 8
 library(patchwork)
-panel_E + panel_F + panel_K +
+panel_E + panel_F + free(panel_K, type = "label") +
   plot_layout(widths = c(1, 1, 1.75)) &
   plot_annotation(tag_levels = list(c("E", "F", "K"))) &
   theme(plot.tag = element_text(size = 10, face = "bold"))
@@ -1522,7 +1820,7 @@ panel_E + panel_F + panel_K +
 #| fig-height: 2.5
 #| fig-width: 10
 library(patchwork)
-panel_E + panel_F + panel_K +
+panel_E + panel_F + free(panel_K, type = "label") +
   plot_layout(widths = c(1, 1, 1.75)) &
   plot_annotation(tag_levels = list(c("E", "F", "K"))) &
   theme(plot.tag = element_text(
@@ -1545,7 +1843,7 @@ ggsave(
 )
 ```
 
-PDFs don't lose resolution and are easily edited in Inkscape/Photoshop
+PDFs don't lose resolution and are easily edited in Inkscape/Illustrator
 
 ## Save to png
 
