@@ -1238,7 +1238,7 @@ Which layers and functions need changing?
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "1|9|14|31"
+#| code-line-numbers: "1|10|15|32"
 #| output-location: column-fragment
 panel_F <- ggplot(
   data = sulis_bar_data,
