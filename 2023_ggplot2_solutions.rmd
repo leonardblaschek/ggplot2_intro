@@ -119,6 +119,8 @@ Seven facets look a bit inelegant, and the `0` facet (*i.e.* WT) is useless anyw
 Going a bit beyond the scope of this workshop, replace your data argument with
 `data = data |> filter(target_genes > 0)` to remove the `0` facet (assuming you named your data frame `data`).
 
+Also, perhaps give it another colour scheme?
+
 #### Data: 
 `"data/Sulis2023_predictions.tsv"`
 
@@ -136,6 +138,7 @@ ggplot(
   )
 ) +
   geom_density2d_filled(contour_var = "ndensity") +
+  scale_fill_viridis_d(option = "B") +
   geom_hline(yintercept = 100, colour = "white", linetype = "dashed") +
   geom_vline(xintercept = 100, colour = "white", linetype = "dashed") +
   theme_sulis() +
