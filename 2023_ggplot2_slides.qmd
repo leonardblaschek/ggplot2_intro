@@ -130,6 +130,8 @@ A universal framework that allows creating and combining without limits.
 -  Statistical tests 
 -  90% of `ggplot2` 
 
+# {background-image="images/wts.png" background-size="contain"}
+
 ---
 
 **Multiplex CRISPR editing of wood for sustainable fiber production.**
