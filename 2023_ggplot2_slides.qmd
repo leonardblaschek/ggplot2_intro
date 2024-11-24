@@ -1390,7 +1390,7 @@ panel_K <- ggplot(
     aes(
       colour = type,
       fill = after_scale(
-        alpha(colour, 0.4)
+        colorspace::lighten(colour, 0.6)
       )
     ),
     shape = "circle filled"
@@ -1420,7 +1420,7 @@ panel_K <- ggplot(
     aes(
       colour = type,
       fill = after_scale(
-        alpha(colour, 0.4)
+        colorspace::lighten(colour, 0.6)
       )
     ),
     shape = "circle filled"
@@ -1458,7 +1458,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
@@ -1502,7 +1502,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
@@ -1566,7 +1566,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
@@ -1615,7 +1615,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
@@ -1666,7 +1666,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
@@ -1717,7 +1717,7 @@ panel_K <- ggplot(
   geom_point(
     aes(
       colour = type,
-      fill = after_scale(alpha(colour, 0.4))
+      fill = after_scale(colorspace::lighten(colour, 0.6))
     ),
     shape = "circle filled"
   ) +
